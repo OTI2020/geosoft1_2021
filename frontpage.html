@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+    <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>Geosoftware I - Uebung 1</title>
+            <script type="text/javascript" src="data/polygon.js"></script> 
+            <script type="text/javascript" src="data/route.js"></script> 
+            <script type="text/javascript" src="lib/uebung_1.js"></script> 
+            <style>
+                table, th, td {
+                  border: 1px solid rgb(34, 143, 0); 
+                }
+            </style>
+        </head>
+        <body>
+            <h3>Table 1 - all paths (not cut at intersection)</h3>
+            <h5 id="gesamtlaenge1"></h5>
+            <table id="table1">
+                <tr>
+                    <th>inside or outside</th>
+                    <th>Startpoint (lon/lat)</th>
+                    <th>Endpoint (lon/lat)</th>
+                    <th>Length in Meters</th>
+                </tr>
+                <tBody id="tableBody1">
+                </tBody>
+            </table>
+
+            <h3>Table 2 - all paths (cut at intersection)</h3>
+            <h5 id="gesamtlaenge2"></h5>
+            <table id = "table2">
+                <tr>
+                    <th>inside or outside</th>
+                    <th>Startpoint (lon/lat)</th>
+                    <th>Endpoint (lon/lat)</th>
+                    <th>Length in Meters</th>
+                </tr>
+                <tBody id="tableBody2">
+                </tBody>
+            </table>
+        </body>
+    </html> 
