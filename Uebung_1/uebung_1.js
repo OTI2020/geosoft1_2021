@@ -7,6 +7,7 @@ function main() {
     console.log("test main my paraklet")
 }
 
+
 /**
  * only for testing if lat and lon are swapped
  * function swapped lat and lon
@@ -21,6 +22,7 @@ function changeLatLon(point) {
 
     return point
 }
+
 
 /**
  * this calculations base on a sphere as representation of the earth
@@ -60,14 +62,10 @@ function changeLatLon(point) {
     // returns distance between the both input points
     return dist
 }
-
-
-
 // test @function calculateDistanceBetweenTwoPoints
 console.log("test calculateDistanceBetweenTwoPoints")
 console.log(calculateDistanceBetweenTwoPoints(changeLatLon(polygon[0]), changeLatLon(polygon[1])))
 console.log(calculateDistanceBetweenTwoPoints(polygon[0], polygon[1]))
-
 
 
 /**
@@ -98,7 +96,6 @@ function detectPointInPolygon(point, polygon) {
     }
     return inside; //return the result (true for odd number of relevat segments intersected and false for an even number of relevant segments intersected)
 }
-
 // test @function detectPointInPolygon
 console.log("test detectPointInPolygon")
 console.log(detectPointInPolygon(route[0], polygon))
@@ -110,11 +107,6 @@ console.log(detectPointInPolygon(route[0], polygon))
  * @param {Function} detectPointInPolygon(point, polygon)
  * @returns {Array} 
  */
-
-
-
-
-
 
 
 
