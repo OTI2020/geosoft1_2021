@@ -1,8 +1,6 @@
 /**
  * @author @OTI2020 Gustav
- * @import route from route.js from datastore
  */
-import route from route.js
 
 /**
 * @function calculateDistanceBetweenTwoPoints
