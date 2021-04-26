@@ -6,8 +6,11 @@
 function main() {
     console.log("test main my paraklet")
 
-    makeSeperationArray(route, polygon)
-    sectionCount(seperationArray)
+
+    var seperationArray = makeSeperationArray(in_route, in_polygon)
+    var sectionArray = sectionCount(seperationArray)
+    sectionSizeCount(sectionArray)
+
 }
 
 
@@ -28,14 +31,18 @@ function changeLatLon(point) {
 
 
 /**
- * this calculations base on a sphere as representation of the earth
- * so we have errors up to 0.3%, because the earth is a little elliptic
+ * this calculations base on a sphere as representation
+ * of the earth so we have errors up to 0.3%, because 
+ * the earth is a little elliptic. 
+ * Each point-coordinates represent one latitude and one 
+ * longitude.
  * @function calculateDistanceBetweenTwoPoints
  * @param {Array} pointA - two points as arrays
  * @param {Array} pointB
- * each point-coordinates represent one latitude and one longitude
- * @return {float} - returns the distance between pointA and PointB
- * Algorithim like this https://www.movable-type.co.uk/scripts/latlong.html
+ * @return {float} - returns the distance between pointA 
+ * and PointB
+ * Algorithim like this: 
+ * https://www.movable-type.co.uk/scripts/latlong.html
  */
  function calculateDistanceBetweenTwoPoints(pointA, pointB) {
     const p = Math.PI/180 // PI/180 is ca. 0.017453292519943295
@@ -152,16 +159,23 @@ function sectionCount(in_seperationArray) {
 
 
 /**
+ * TODO #2:
+ * 
  * @function sectionSizeCount
- * @param {Array} in_seperationArray
+ * @param {Array} in_sectionArray
+ * @returns {Array}
  */
- function sectionSizeCount(in_seperationArray) {
-    var sectionCounter = 1
+ function sectionSizeCount(in_sectionArray) {
+    var sectionSizeCounter = 0
     for(let i=0; i<seperationArray.length-2; i++) {
-        if (in_seperationArray[i] != in_seperationArray[i+1]) {
-            sectionCounter ++
+        if (in_sectionArray[i] != in_sectionArray[i+1]) {
+            sectionSizeCounter ++
         }
-    }
+        else in_sectionArray[sectionSizeCounter]
+            +=calculateDistanceBetweenTwoPoints(
+in_sectionArray[i], in_sectionArray[i+1])
+     }
+     return in_sectionArray
 }
 
 
