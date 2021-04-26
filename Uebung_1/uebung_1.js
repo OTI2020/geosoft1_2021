@@ -73,6 +73,7 @@ console.log(calculateDistanceBetweenTwoPoints(polygon[0], polygon[1]))
 
 /**
  * 
+ * 
  * @function detectPointInPolygon
  * @param {Array} point - needs a polygon as an array and the point as an array
  * @param {Array} polygon 
@@ -125,10 +126,31 @@ function makeSeperationArray(in_route, in_polygone) {
 
 
 /**
+ * The purpose is to get the number of all sections and 
+ * create an array with a corresponding number of storage space.
  * @function sectionCount
  * @param {Array} in_seperationArray
+ * @returns {Array} out_sectionArray
  */
 function sectionCount(in_seperationArray) {
+    // Starting with 1 and not 0, because we actually only count
+    // the intersections/changes of section
+    var sectionCounter = 1
+    for(let i=0; i<seperationArray.length-2; i++) {
+        if (in_seperationArray[i] != in_seperationArray[i+1]) {
+            sectionCounter ++
+        }
+    }
+    var out_sectionArray = [sectionCounter]
+    return out_sectionArray
+}
+
+
+/**
+ * @function sectionSizeCount
+ * @param {Array} in_seperationArray
+ */
+ function sectionSizeCount(in_seperationArray) {
     var sectionCounter = 1
     for(let i=0; i<seperationArray.length-2; i++) {
         if (in_seperationArray[i] != in_seperationArray[i+1]) {
@@ -136,4 +158,5 @@ function sectionCount(in_seperationArray) {
         }
     }
 }
+
 
