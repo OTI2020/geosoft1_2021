@@ -102,6 +102,11 @@ console.log(detectPointInPolygon(route[0], polygon))
 
 
 /**
+ * The function fills an array with boolean values calculatet with 
+ * the function detectPointInPolygon.
+ * For each point of the in_route, we save the information if it
+ * is in- or outsine the in_polygone in the seperationArray.
+ * The seperationArray is declaired in the following.
  * @function seperaterArray
  * @param {Array} in_route - array of points
  * @param {Array} in_polygon
@@ -113,18 +118,4 @@ function seperaterArray(in_route, in_polygone) {
         seperationArray[i] = detectPointInPolygon(in_route[i], in_polygone)
     }
     return seperationArray
-}
-
-
-/**
- * @function seperateOutsiedeCoordinates
- * @param {[double]} listOfCoordinates - is an array that contains Coordinates of a given route
- * @returns {double} sum - is the final sum of all subsequences
- */
-function seperateOutsiedeCoordinates(listOfCoordinates, separationArray)
-{
-    for(let i=0; i<listOfCoordinates.length-1; i++){
-        seperationArray[i] += (list[i], list[i+1])
-    }
-    return sum
 }
