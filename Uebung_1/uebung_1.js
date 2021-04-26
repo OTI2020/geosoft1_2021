@@ -4,7 +4,7 @@
  * @function main
  */
 function main() {
-    console.log("my paraklet")
+    console.log("test main my paraklet")
 }
 
 /**
@@ -64,6 +64,7 @@ function changeLatLon(point) {
 
 
 // test @function calculateDistanceBetweenTwoPoints
+console.log("test calculateDistanceBetweenTwoPoints")
 console.log(calculateDistanceBetweenTwoPoints(changeLatLon(polygon[0]), changeLatLon(polygon[1])))
 console.log(calculateDistanceBetweenTwoPoints(polygon[0], polygon[1]))
 
@@ -99,6 +100,7 @@ function detectPointInPolygon(point, polygon) {
 }
 
 // test @function detectPointInPolygon
+console.log("test detectPointInPolygon")
 console.log(detectPointInPolygon(route[0], polygon))
 
 
