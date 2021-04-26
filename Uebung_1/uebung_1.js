@@ -53,12 +53,16 @@ function changeLatLon(point) {
     // for the use in trigonomic functions
     const phi1 = lat1 * p
     const phi2 = lat2 * p
-    const delPhi = (lat2-lat1) * p // delta phi - means difference between both latitudes
-    const delLam = (lon2-lon1) * p // delta lambda - means difference between both longitudes
+
+    // delta phi means difference between both latitudes and
+    // delta lambda difference between both longitudes
+    const delPhi = (lat2-lat1) * p 
+    const delLam = (lon2-lon1) * p 
     
     // trigonometic calculations for geodetic purpose
     // base on the haversine formula
-    const partA = s(delPhi/2) * s(delPhi/2) + c(phi1) * c(phi2) * s(delLam/2) * s(delLam/2)
+    const partA = s(delPhi/2) * s(delPhi/2) + c(phi1) * c(phi2) 
+                * s(delLam/2) * s(delLam/2)
     const partB = 2 * at(Math.sqrt(partA), Math.sqrt(1-partA))
     const dist = R * partB // in metres
 
@@ -67,12 +71,13 @@ function changeLatLon(point) {
 }
 // test @function calculateDistanceBetweenTwoPoints
 console.log("test calculateDistanceBetweenTwoPoints")
-console.log(calculateDistanceBetweenTwoPoints(changeLatLon(polygon[0]), changeLatLon(polygon[1])))
+console.log(calculateDistanceBetweenTwoPoints(changeLatLon(polygon[0]), 
+    changeLatLon(polygon[1])))
 console.log(calculateDistanceBetweenTwoPoints(polygon[0], polygon[1]))
 
 
 /**
- * 
+ * TODO #1: 
  * 
  * @function detectPointInPolygon
  * @param {Array} point - needs a polygon as an array and the point as an array
