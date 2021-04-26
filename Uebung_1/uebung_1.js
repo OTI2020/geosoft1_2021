@@ -7,15 +7,15 @@ function main() {
     console.log("test main my paraklet")
 
 
-    var seperationArray = makeSeparationArray(route, polygon)
-    var sectionArray = sectionCount(seperationArray)
+    var separationArray = makeSeparationArray(route, polygon)
+    var sectionArray = sectionCount(separationArray)
     sectionSizeCount(sectionArray)
 
 }
 // test function main
 console.log("test main")
 console.log("but how?")
-
+console.log(main)
 
 /**
  * only for testing if lat and lon are swapped
@@ -71,9 +71,8 @@ function changeLatLon(point) {
     
     // trigonometic calculations for geodetic purpose
     // base on the haversine formula
-    const partA = s(delPhi/2) * s(delPhi/2) + c(phi1) * c(phi2) 
-                * s(delLam/2) * s(delLam/2)
-    const partB = 2 * at(Math.sqrt(partA), Math.sqrt(1-partA))
+    const partA = s(delPhi/2)*s(delPhi/2) + c(phi1)*c(phi2)*s(delLam/2)*s(delLam/2)
+    const partB = 2*at(Math.sqrt(partA), Math.sqrt(1-partA))
     const dist = R * partB // in metres
 
     // returns distance between the both input points
@@ -81,8 +80,7 @@ function changeLatLon(point) {
 }
 // test function calculateDistanceBetweenTwoPoints
 console.log("test calculateDistanceBetweenTwoPoints")
-console.log(calculateDistanceBetweenTwoPoints(changeLatLon(polygon[0]), 
-    changeLatLon(polygon[1])))
+console.log(calculateDistanceBetweenTwoPoints(changeLatLon(polygon[0]), changeLatLon(polygon[1])))
 console.log(calculateDistanceBetweenTwoPoints(polygon[0], polygon[1]))
 
 
@@ -124,9 +122,9 @@ console.log(detectPointInPolygon(route[0], polygon))
  * The function fills an array with boolean values calculatet with 
  * the function detectPointInPolygon.
  * For each point of the in_route, we save the information if it
- * is in- or outsine the in_polygone in the seperationArray.
- * The seperationArray is declaired in the following.
- * @function makeSeperationArray
+ * is in- or outsine the in_polygone in the separationArray.
+ * The separationArray is declaired in the following.
+ * @function makeSeparationArray
  * @param {Array} in_route - array of points
  * @param {Array} in_polygon - given polygone
  * @returns {Array} 
@@ -138,7 +136,9 @@ function makeSeparationArray(in_route, in_polygone) {
     }
     return separationArray
 }
-
+// test function sectionSizeCount
+console.log("test makeSeparationArray")
+console.log(makeSeparationArray(route, polygon))
 
 /**
  * The purpose is to get the number of all sections and 
@@ -151,7 +151,7 @@ function sectionCount(in_separationArray) {
     // Starting with 1 and not 0, because we actually only count
     // the intersections/changes of section
     var sectionCounter = 1
-    for(let i=0; i<seperationArray.length-2; i++) {
+    for(let i=0; i<in_separationArray.length-2; i++) {
         if (in_separationArray[i] != in_separationArray[i+1]) {
             sectionCounter ++
         }
@@ -170,17 +170,14 @@ function sectionCount(in_separationArray) {
  */
  function sectionSizeCount(in_sectionArray) {
     var sectionSizeCounter = 0
-    for(let i=0; i<seperationArray.length-2; i++) {
+    for(let i=0; i<in_sectionArray.length-2; i++) {
         if (in_sectionArray[i] != in_sectionArray[i+1]) {
             sectionSizeCounter ++
         }
-        else in_sectionArray[sectionSizeCounter]
-            +=calculateDistanceBetweenTwoPoints(
-            in_sectionArray[i], in_sectionArray[i+1])
+        else in_sectionArray[sectionSizeCounter]+=calculateDistanceBetweenTwoPoints(in_sectionArray[i], in_sectionArray[i+1])
      }
      return in_sectionArray
 }
 // test function sectionSizeCount
 console.log("test sectionSizeCounter")
 console.log(sectionSizeCount(sectionCount(makeSeparationArray(route, polygon))))
-
