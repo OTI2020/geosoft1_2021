@@ -1,7 +1,26 @@
 /**
+ * just for better overview
  * @author @OTI2020 Gustav
+ * @function main
  */
-console.log("my paraklet")
+function main() {
+    console.log("my paraklet")
+}
+
+/**
+ * only for testing if lat and lon are swapped
+ * function swapped lat and lon
+ * @function changeLatLon
+ * @param {Array} point
+ * @returns {Array}
+ */
+function changeLatLon(point) {
+    var temp = point[0]
+    point[0] = point[1]
+    point[1] = temp
+
+    return point
+}
 
 /**
  * this calculations base on a sphere as representation of the earth
@@ -42,16 +61,21 @@ console.log("my paraklet")
     return dist
 }
 
+
+
 // test @function calculateDistanceBetweenTwoPoints
-console.log(calculateDistanceBetweenTwoPoints(polygon[1], polygon[2]))
+console.log(calculateDistanceBetweenTwoPoints(changeLatLon(polygon[0]), changeLatLon(polygon[1])))
+console.log(calculateDistanceBetweenTwoPoints(polygon[0], polygon[1]))
+
+
 
 /**
  * 
  * @function detectPointInPolygon
  * @param {Array} point - needs a polygon as an array and the point as an array
  * @param {Array} polygon 
- * @return {boolean} - returns true if the point is inside the polygon or on the border of the polygon and 
- *                     returns false if the point is not inside the polygon
+ * @return {boolean} - returns true if the point is inside the polygon or 
+ * on the border of the polygon and false if the point is not inside the polygon
  */
 function detectPointInPolygon(point, polygon) {
     var x = point[0] //longitude of the point
@@ -63,15 +87,20 @@ function detectPointInPolygon(point, polygon) {
         var yi = polygon[i][1] //latitude of vertex i
         var xj = polygon[j][0] //longitude of vertex j
         var yj = polygon[j][1] //latitude of vertex j
-
-        var intersect = ((yi > y) != (yj > y)) && (x < (xj - xi) * (y - yi) / (yj - yi) + xi) //check if the casted ray intersect relevant segments of the polygon
-
+        
+        //check if the casted ray intersect relevant segments of the polygon
+        var intersect = ((yi > y) != (yj > y)) && (x < (xj - xi) * (y - yi) / (yj - yi) + xi) 
+        
         if (intersect) { //if the casted ray intersect a relevant segment the inside value is changend
             inside = !inside 
         } 
     }
     return inside; //return the result (true for odd number of relevat segments intersected and false for an even number of relevant segments intersected)
 }
+
+// test @function detectPointInPolygon
+console.log(detectPointInPolygon(route[0], polygon))
+
 
 /**
  * @function seperaterArray
