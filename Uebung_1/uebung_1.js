@@ -103,18 +103,18 @@ console.log(detectPointInPolygon(route[0], polygon))
 
 /**
  * @function seperaterArray
- * @param {Array} input_route - array of points
- * @param {Function} detectPointInPolygon(point, polygon)
+ * @param {Array} in_route - array of points
+ * @param {Array} in_polygon
  * @returns {Array} 
  */
+function seperaterArray(in_route, in_polygone) {
+    var separationArray= [route.length]
+    for(let i=0; i<separationArray.length-1; i++) {
+        seperationArray[i] = detectPointInPolygon(in_route[i], in_polygone)
+    }
+    return seperationArray
+}
 
-
-
-/** 
- * this array is needed to represent if a point
- * is in the given polygone or not
- */ 
-let separationArray= [route.length]
 
 /**
  * @function seperateOutsiedeCoordinates
