@@ -7,11 +7,14 @@ function main() {
     console.log("test main my paraklet")
 
 
-    var seperationArray = makeSeperationArray(in_route, in_polygon)
+    var seperationArray = makeSeparationArray(route, polygon)
     var sectionArray = sectionCount(seperationArray)
     sectionSizeCount(sectionArray)
 
 }
+// test function main
+console.log("test main")
+console.log("but how?")
 
 
 /**
@@ -76,7 +79,7 @@ function changeLatLon(point) {
     // returns distance between the both input points
     return dist
 }
-// test @function calculateDistanceBetweenTwoPoints
+// test function calculateDistanceBetweenTwoPoints
 console.log("test calculateDistanceBetweenTwoPoints")
 console.log(calculateDistanceBetweenTwoPoints(changeLatLon(polygon[0]), 
     changeLatLon(polygon[1])))
@@ -112,7 +115,7 @@ function detectPointInPolygon(point, polygon) {
     }
     return inside; //return the result (true for odd number of relevat segments intersected and false for an even number of relevant segments intersected)
 }
-// test @function detectPointInPolygon
+// test function detectPointInPolygon
 console.log("test detectPointInPolygon")
 console.log(detectPointInPolygon(route[0], polygon))
 
@@ -128,12 +131,12 @@ console.log(detectPointInPolygon(route[0], polygon))
  * @param {Array} in_polygon - given polygone
  * @returns {Array} 
  */
-function makeSeperationArray(in_route, in_polygone) {
+function makeSeparationArray(in_route, in_polygone) {
     var separationArray= [route.length]
     for(let i=0; i<separationArray.length-1; i++) {
-        seperationArray[i] = detectPointInPolygon(in_route[i], in_polygone)
+        separationArray[i] = detectPointInPolygon(in_route[i], in_polygone)
     }
-    return seperationArray
+    return separationArray
 }
 
 
@@ -141,15 +144,15 @@ function makeSeperationArray(in_route, in_polygone) {
  * The purpose is to get the number of all sections and 
  * create an array with a corresponding number of storage space.
  * @function sectionCount
- * @param {Array} in_seperationArray
+ * @param {Array} in_separationArray
  * @returns {Array} out_sectionArray
  */
-function sectionCount(in_seperationArray) {
+function sectionCount(in_separationArray) {
     // Starting with 1 and not 0, because we actually only count
     // the intersections/changes of section
     var sectionCounter = 1
     for(let i=0; i<seperationArray.length-2; i++) {
-        if (in_seperationArray[i] != in_seperationArray[i+1]) {
+        if (in_separationArray[i] != in_separationArray[i+1]) {
             sectionCounter ++
         }
     }
@@ -173,9 +176,11 @@ function sectionCount(in_seperationArray) {
         }
         else in_sectionArray[sectionSizeCounter]
             +=calculateDistanceBetweenTwoPoints(
-in_sectionArray[i], in_sectionArray[i+1])
+            in_sectionArray[i], in_sectionArray[i+1])
      }
      return in_sectionArray
 }
-
+// test function sectionSizeCount
+console.log("test sectionSizeCounter")
+console.log(sectionSizeCount(sectionCount(makeSeparationArray(route, polygon))))
 
