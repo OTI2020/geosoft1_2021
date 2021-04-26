@@ -5,8 +5,8 @@
 import route from route.js
 
 /**
-* @function calculateDistanceBetweenTwoPoints()
-* @param {Array} pointA - two points als arrays
+* @function calculateDistanceBetweenTwoPoints
+* @param {Array} pointA - two points as arrays
 * @param {Array} pointB
 * each point-coordinates represent one latitude and one longitude
 * @return {float} - returns the distance between pointA and PointB
@@ -14,10 +14,10 @@ import route from route.js
 */
 function calculateDistanceBetweenTwoPoints(pointA, pointB) {
     const p = Math.PI/180 // PI/180 is ca. 0.017453292519943295
+    const R = 6371e3; // R is earth’s radius (mean radius = 6,371km)
     var c = Math.cos //cosisnus
     var s = Math.sin //sinus
     var at = Math.atan2 //
-    const R = 6371e3; // R is earth’s radius (mean radius = 6,371km)
     
     var lat1 = pointA[1] //latitude of pointA
     var lon1 = pointA[0] //longitude of pointA
@@ -26,20 +26,21 @@ function calculateDistanceBetweenTwoPoints(pointA, pointB) {
 
     const phi1 = lat1 * p // φ, λ in radians
     const phi2 = lat2 * p
-    const delPhi = (lat2-lat1) * p // delta phi
-    const delLam = (lon2-lon1) * p // delta lambda
+    const delPhi = (lat2-lat1) * p // delta phi - means difference between both latitudes
+    const delLam = (lon2-lon1) * p // delta lambda - means difference between both longitudes
     
     const partA = s(delPhi/2) * s(delPhi/2) + c(phi1) * c(phi2) * s(delLam/2) * s(delLam/2)
     const partB = 2 * at(Math.sqrt(partA), Math.sqrt(1-partA))
-    const d = R * partB // in metres
+    const dist = R * partB // in metres
 
-    return d
+    return dist
 }
 
 /**
  * Performs the even-odd-rule Algorithm (a raycasting algorithm) to find out whether a point is in a given polygon.
  * This runs in O(n) where n is the number of edges of the polygon.
  *
+ * @function pointInPolygon
  * @param {Array} polygon an array representation of the polygon where polygon[i][0] is the x Value of the i-th point and polygon[i][1] is the y Value.
  * @param {Array} point   an array representation of the point where point[0] is its x Value and point[1] is its y Value
  * @return {boolean} whether the point is in the polygon (not on the edge, just turn < into <= and > into >= for that)
@@ -64,7 +65,7 @@ function calculateDistanceBetweenTwoPoints(pointA, pointB) {
     return odd;
 };
 /**
-* @function detectPointInPolygon()
+* @function detectPointInPolygon
 * @param {Array} point, {Array} polygon - needs a polygon as an array and the point as an array
 * @return {boolean} - returns true if the point is inside the polygon or on the border of the polygon and 
 *                     returns false if the point is not inside the polygon
