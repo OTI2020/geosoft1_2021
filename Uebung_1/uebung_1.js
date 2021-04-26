@@ -5,6 +5,9 @@
  */
 function main() {
     console.log("test main my paraklet")
+
+    makeSeperationArray(route, polygon)
+    sectionCount(seperationArray)
 }
 
 
@@ -119,3 +122,18 @@ function makeSeperationArray(in_route, in_polygone) {
     }
     return seperationArray
 }
+
+
+/**
+ * @function sectionCount
+ * @param {Array} in_seperationArray
+ */
+function sectionCount(in_seperationArray) {
+    var sectionCounter = 1
+    for(let i=0; i<seperationArray.length-2; i++) {
+        if (in_seperationArray[i] != in_seperationArray[i+1]) {
+            sectionCounter ++
+        }
+    }
+}
+
