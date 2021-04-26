@@ -1,8 +1,7 @@
-console.log("my paraklet")
-
 /**
  * @author @OTI2020 Gustav
  */
+console.log("my paraklet")
 
 /**
  * this calculations base on a sphere as representation of the earth
@@ -17,14 +16,14 @@ console.log("my paraklet")
  function calculateDistanceBetweenTwoPoints(pointA, pointB) {
     const p = Math.PI/180 // PI/180 is ca. 0.017453292519943295
     const R = 6371e3; // R is earth’s radius (mean radius = 6,371 km)
-    let c = Math.cos //cosisnus
-    let s = Math.sin //sinus
-    let at = Math.atan2 //
+    var c = Math.cos // cosisnus
+    var s = Math.sin // sinus
+    var at = Math.atan2 // arctan2
     
-    let lat1 = pointA[1] //latitude of pointA
-    let lon1 = pointA[0] //longitude of pointA
-    let lat2 = pointB[1] //latitude of pointB
-    let lon2 = pointB[0] //longitude of pointB
+    var lat1 = pointA[1] // latitude of pointA
+    var lon1 = pointA[0] // longitude of pointA
+    var lat2 = pointB[1] // latitude of pointB
+    var lon2 = pointB[0] // longitude of pointB
     
     // multiplication with p to convert from degree to radian
     // for the use in trigonomic functions
@@ -33,20 +32,27 @@ console.log("my paraklet")
     const delPhi = (lat2-lat1) * p // delta phi - means difference between both latitudes
     const delLam = (lon2-lon1) * p // delta lambda - means difference between both longitudes
     
+    // trigonometic calculations for geodetic purpose
+    // base on the haversine formula
     const partA = s(delPhi/2) * s(delPhi/2) + c(phi1) * c(phi2) * s(delLam/2) * s(delLam/2)
     const partB = 2 * at(Math.sqrt(partA), Math.sqrt(1-partA))
     const dist = R * partB // in metres
 
+    // returns distance between the both input points
     return dist
 }
 
+// test @function calculateDistanceBetweenTwoPoints
+console.log(calculateDistanceBetweenTwoPoints(polygon[1], polygon[2]))
 
 /**
-* @function detectPointInPolygon
-* @param {Array} point, {Array} polygon - needs a polygon as an array and the point as an array
-* @return {boolean} - returns true if the point is inside the polygon or on the border of the polygon and 
-*                     returns false if the point is not inside the polygon
-*/
+ * 
+ * @function detectPointInPolygon
+ * @param {Array} point - needs a polygon as an array and the point as an array
+ * @param {Array} polygon 
+ * @return {boolean} - returns true if the point is inside the polygon or on the border of the polygon and 
+ *                     returns false if the point is not inside the polygon
+ */
 function detectPointInPolygon(point, polygon) {
     var x = point[0] //longitude of the point
     var y = point[1] //latitude of the point
@@ -58,16 +64,21 @@ function detectPointInPolygon(point, polygon) {
         var xj = polygon[j][0] //longitude of vertex j
         var yj = polygon[j][1] //latitude of vertex j
 
-        var intersect = ((yi > y) != (yj > y)) && (x < (xj - xi) * (y - yi) / (yj - yi) + xi); //check if the casted ray intersect relevant segments of the polygon
+        var intersect = ((yi > y) != (yj > y)) && (x < (xj - xi) * (y - yi) / (yj - yi) + xi) //check if the casted ray intersect relevant segments of the polygon
 
         if (intersect) { //if the casted ray intersect a relevant segment the inside value is changend
             inside = !inside 
         } 
     }
     return inside; //return the result (true for odd number of relevat segments intersected and false for an even number of relevant segments intersected)
-};
+}
 
-
+/**
+ * @function seperaterArray
+ * @param {Array} input_route - array of points
+ * @param {Function} detectPointInPolygon(point, polygon)
+ * @returns {Array} 
+ */
 
 
 
