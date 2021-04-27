@@ -1,26 +1,22 @@
 /**
  * just for better overview
  * @author @OTI2020 Gustav
- * @version 0.6.6 - testing with console.log()
+ * @version 0.6.8 - solve problems and init bubbleSort
  * @function main
  */
 main() //runner for main
-function main() {
-    // test1 main
-    console.log("test main my paraklet ")
-    
+function main() {    
     var separationArray = makeSeparationArray(route, polygon)
-    
-    console.log("separationArray " + separationArray);
+    console.log("separationArray " + separationArray)
     
     var sectionArray = sectionCount(separationArray)
+    console.log("sectionArray " + sectionArray)
+    
+    var distArray = sectionSizeCount(sectionArray, route, separationArray)
+    console.log("distArray " + distArray)
 
-    console.log("sectionArray " + sectionArray);
-    console.log("separationArray " + separationArray);
-
-    sectionSizeCount(sectionArray, route, separationArray)
-    // test2 main
-    console.log("test2 main " + sectionSizeCount(sectionArray))
+    var sortedArray = bubbleSort(distArray)
+    console.log(sortedArray)
 }
 
 
@@ -91,7 +87,6 @@ function changeLatLon(point) {
 }
 // test function calculateDistanceBetweenTwoPoints
 // console.log("test calculateDistanceBetweenTwoPoints")
-// console.log(calculateDistanceBetweenTwoPoints(changeLatLon(polygon[0]), changeLatLon(polygon[1])))
 // console.log(calculateDistanceBetweenTwoPoints(polygon[0], polygon[1]))
 
 
@@ -153,16 +148,12 @@ function makeSeparationArray(in_route, in_polygone) {
     for(let i=0; i<in_route.length-1; i++) {
         separationArray[i] = detectPointInPolygon(in_route[i], in_polygone)
     }
-    // console.log("test separationArray" + separationArray)
-
     // array that says for every point if it is inside the polygone
     return separationArray
 }
 // test function sectionSizeCount
-// 
-console.log("test makeSeparationArray")
-// 
-console.log(makeSeparationArray(route, polygon))
+// console.log("test makeSeparationArray")
+// console.log(makeSeparationArray(route, polygon))
 
 
 /**
@@ -178,38 +169,34 @@ function sectionCount(in_separationArray) {
     var sectionCounter = 1
     for(let i=0; i<in_separationArray.length-2; i++) {
         if (in_separationArray[i] != in_separationArray[i+1]) {
-            sectionCounter ++
+            sectionCounter++
         }
     }
-    var out_sectionArray = [sectionCounter]
-    // out_sectionArray.push(sectionCounter)
-    console.log("out_sectionArray " + out_sectionArray);
+    var out_sectionArray = [0]
+    // new array is created and as big as there are sections
+    // plus 1 to sum every entry up in the final array spot
+    for(let j = 0; j<sectionCounter; j++){       
+        out_sectionArray.push(0)
+    }
+    // returning array has as much storage space
+    // as sections of the route exists
     return out_sectionArray
 }
 // test function sectionCount
-// 
-console.log("test sectionCounter")
-// 
-console.log(sectionCount(makeSeparationArray(route, polygon)))
+// console.log("test sectionCounter")
+// console.log(sectionCount(makeSeparationArray(route, polygon)))
 
 
 /**
- * TODO #2:
- * 
  * @function sectionSizeCount
  * @param {Array} in_sectionArray
  * @param {Array} in_route
- * @returns {Array}
+ * @param {Array} in_separationArray
+ * @returns {Array} 
  */
  function sectionSizeCount(in_sectionArray, in_route, in_separationArray) {
-
-    console.log("in_sectionArray " + in_sectionArray)
-    // console.log("in_separationArray.length " + in_separationArray.length)
-    console.log(in_separationArray)
-
     var sectionSizeCounter = 0
     for(let i=0; i<in_separationArray.length-2; i++) {
-        console.log("i" + i)
         if (in_separationArray[i] != in_separationArray[i+1]) {
             sectionSizeCounter ++
         }
@@ -217,14 +204,38 @@ console.log(sectionCount(makeSeparationArray(route, polygon)))
             in_sectionArray[sectionSizeCounter]+=calculateDistanceBetweenTwoPoints(in_route[i], in_route[i+1])
         }
      }
-     console.log("test in_sectionArray " + in_sectionArray)
+     // sum is for saveing the sum of all elements in the in_sectionArray
+     var sum = 0 
+     // itterate through in_sectionArray and add every entry to sum
+     for(let j = 0; j<in_sectionArray.length-1; j++){ 
+            sum += in_sectionArray[j]
+     }
+     // last storage place in in_sectionArrayrepresents sum
+     in_sectionArray[sectionSizeCounter+1] =  sum 
      return in_sectionArray
 }
 // test function sectionSizeCount
-// 
-console.log("test sectionSizeCounter")
-// 
-console.log(sectionSizeCount(sectionCount(makeSeparationArray(route, polygon))))
+// console.log("test sectionSizeCounter")
+// console.log(sectionSizeCount(sectionCount(makeSeparationArray(route, polygon))))
+
+
+/**
+ * bubbleSort is needed to sort the array. The shortest distance gets on top etc.
+ * @function bubbleSort
+ * @param {Array} in_distanceArray - the Array with the distances 
+ * @returns {Array}
+ */
+ function bubbleSort(in_distanceArray) {
+    for (var i = 0; i < in_distanceArray.length; i++) {
+      if (in_distanceArray[i] > in_distanceArray[i + 1]) {
+        var a = in_distanceArray[i]
+        var b = in_distanceArray[i + 1]
+        in_distanceArray[i] = b
+        in_distanceArray[i + 1] = a
+      }
+    }
+    return in_distanceArray;
+  }
 
 
 /**
