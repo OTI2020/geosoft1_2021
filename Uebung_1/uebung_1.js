@@ -1,7 +1,7 @@
 /**
  * just for better overview
  * @author @OTI2020 Gustav
- * @version 0.6.10 - fixed sortationproblems
+ * @version 0.7.0 - prepare table for html
  * @function main
  */
 main() //runner for main
@@ -199,15 +199,33 @@ function sectionCount(in_separationArray) {
  * @returns {Array} 
  */
 function sectionSizeCount(in_sectionArray, in_route, in_separationArray) {
+    var rowOneArray = [route[0]]
+    var rowTwoArray = []
+
     var sectionSizeCounter = 0
     for(let i=0; i<in_separationArray.length-2; i++) {
         if (in_separationArray[i] != in_separationArray[i+1]) {
             sectionSizeCounter ++
+
+            rowOneArray.push(route[i]) // end of current section
+            rowTwoArray.push(route[i+1]) // beginning of next section
         }
         else {
             in_sectionArray[sectionSizeCounter]+=calculateDistanceBetweenTwoPoints(in_route[i], in_route[i+1])
         }
      }
+     rowTwoArray.push(route[route.length-1])
+
+     console.log("tabellenvorbereitung")
+     console.log(rowOneArray)
+     console.log(rowTwoArray)
+
+     var tableArray = [[],[],[],[]]
+     tableArray[0].push(in_sectionArray)
+     tableArray[1].push(rowOneArray)
+     tableArray[2].push(rowTwoArray)
+     tableArray[3].push()
+
      // sum is for saveing the sum of all elements in the in_sectionArray
      var sum = 0 
      // itterate through in_sectionArray and add every entry to sum
@@ -215,12 +233,16 @@ function sectionSizeCount(in_sectionArray, in_route, in_separationArray) {
             sum += in_sectionArray[j]
      }
      // last storage place in in_sectionArrayrepresents sum
-     in_sectionArray[sectionSizeCounter+1] =  sum 
-     return in_sectionArray
+     // in_sectionArray[sectionSizeCounter+1] =  sum 
+
+     return tableArray
 }
 // test function sectionSizeCount
 // console.log("test sectionSizeCounter")
 // console.log(sectionSizeCount(sectionCount(makeSeparationArray(route, polygon))))
+
+
+
 
 
 /**
