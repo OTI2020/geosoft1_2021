@@ -6,13 +6,12 @@
  */
 main() //runner for main
 function main() {
+    // test main
     console.log("test main my paraklet")
-
-
+    
     var separationArray = makeSeparationArray(route, polygon)
     var sectionArray = sectionCount(separationArray)
     sectionSizeCount(sectionArray)
-
 }
 
 
@@ -141,6 +140,7 @@ function makeSeparationArray(in_route, in_polygone) {
 console.log("test makeSeparationArray")
 console.log(makeSeparationArray(route, polygon))
 
+
 /**
  * The purpose is to get the number of all sections and 
  * create an array with a corresponding number of storage space.
@@ -160,6 +160,9 @@ function sectionCount(in_separationArray) {
     var out_sectionArray = [sectionCounter]
     return out_sectionArray
 }
+// test function sectionCount
+console.log("test sectionCounter")
+console.log(sectionCount(makeSeparationArray(route, polygon)))
 
 
 /**
@@ -182,3 +185,17 @@ function sectionCount(in_separationArray) {
 // test function sectionSizeCount
 console.log("test sectionSizeCounter")
 console.log(sectionSizeCount(sectionCount(makeSeparationArray(route, polygon))))
+
+
+/**
+ * This function creates an array that contians, what the
+ * html-page should show using a table. Route sections 
+ * should be presented together with their length and 
+ * coordinates, sorted by length.
+ */
+
+
+/**
+ * in addition, the total length of these route sections 
+ * should be indicated on the page.
+ */
