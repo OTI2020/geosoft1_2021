@@ -1,22 +1,26 @@
 /**
  * just for better overview
  * @author @OTI2020 Gustav
- * @version 0.6.9 - looking for reason for sort problem
+ * @version 0.6.10 - fixed sortationproblems
  * @function main
  */
 main() //runner for main
 function main() {    
     var separationArray = makeSeparationArray(route, polygon)
-    console.log("separationArray " + separationArray)
+    console.log(separationArray)
+    // console.log("separationArray " + separationArray)
     
     var sectionArray = sectionCount(separationArray)
-    console.log("sectionArray " + sectionArray)
+    console.log(sectionArray)
+    // console.log("sectionArray " + sectionArray)
     
     var distArray = sectionSizeCount(sectionArray, route, separationArray)
-    console.log("distArray " + distArray)
+    console.log(distArray)
+    // console.log("distArray " + distArray)
 
     var sortedArray = bubbleSort(distArray)
-    console.log("sortedArray " + sortedArray)
+    console.log(sortedArray)
+    // console.log("sortedArray " + sortedArray)
 }
 
 
@@ -224,20 +228,21 @@ function sectionSizeCount(in_sectionArray, in_route, in_separationArray) {
  * @function bubbleSort
  * @param {Array} in_distanceArray - the Array with the distances 
  * @returns {Array}
+ * Algorithm like this:
+ * https://medium.com/javascript-algorithms/javascript-algorithms-bubble-sort-3d27f285c3b2
  */
 function bubbleSort(in_distanceArray) {
-    for (let i = 0; i<in_distanceArray.length; i++) {
-        if (in_distanceArray[i] > in_distanceArray[i + 1]) {
-            var a = in_distanceArray[i]
-            var b = in_distanceArray[i + 1]
-            in_distanceArray[i] = b
-            in_distanceArray[i + 1] = a
+    for (let i = 0; i < in_distanceArray.length; i++) {
+        for (let j = 0; j < in_distanceArray.length; j++) {
+            if (in_distanceArray[j] > in_distanceArray[j + 1]) {
+                let tmp = in_distanceArray[j]
+                in_distanceArray[j] = in_distanceArray[j + 1]
+                in_distanceArray[j + 1] = tmp
+            }
         }
     }
-    return in_distanceArray;
- }
-
-
+    return in_distanceArray
+}
 /**
  * This function creates an array that contians, what the
  * html-page should show using a table. Route sections 
