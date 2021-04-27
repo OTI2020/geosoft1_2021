@@ -1,8 +1,10 @@
 /**
+ * TODO
  * just for better overview
  * @author @OTI2020 Gustav
  * @function main
  */
+main() //runner for main
 function main() {
     console.log("test main my paraklet")
 
@@ -12,10 +14,7 @@ function main() {
     sectionSizeCount(sectionArray)
 
 }
-// test function main
-console.log("test main")
-console.log("but how?")
-console.log(main)
+
 
 /**
  * only for testing if lat and lon are swapped
@@ -88,21 +87,21 @@ console.log(calculateDistanceBetweenTwoPoints(polygon[0], polygon[1]))
  * TODO #1: 
  * 
  * @function detectPointInPolygon
- * @param {Array} point - needs a polygon as an array and the point as an array
- * @param {Array} polygon 
+ * @param {Array} in_point - needs a polygon as an array and the point as an array
+ * @param {Array} in_polygon 
  * @return {boolean} - returns true if the point is inside the polygon or 
  * on the border of the polygon and false if the point is not inside the polygon
  */
-function detectPointInPolygon(point, polygon) {
-    var x = point[0] //longitude of the point
-    var y = point[1] //latitude of the point
+function detectPointInPolygon(in_point, in_polygon) {
+    var x = in_point[0] //longitude of the point
+    var y = in_point[1] //latitude of the point
 
     var inside = false //initial value for the check
-    for (var i = 0, j = polygon.length - 1; i < polygon.length; j = i++) { //iterate over the polygon 
-        var xi = polygon[i][0] //longitude of vertex i
-        var yi = polygon[i][1] //latitude of vertex i
-        var xj = polygon[j][0] //longitude of vertex j
-        var yj = polygon[j][1] //latitude of vertex j
+    for (var i = 0, j = in_polygon.length - 1; i < in_polygon.length; j = i++) { //iterate over the polygon 
+        var xi = in_polygon[i][0] //longitude of vertex i
+        var yi = in_polygon[i][1] //latitude of vertex i
+        var xj = in_polygon[j][0] //longitude of vertex j
+        var yj = in_polygon[j][1] //latitude of vertex j
         
         //check if the casted ray intersect relevant segments of the polygon
         var intersect = ((yi > y) != (yj > y)) && (x < (xj - xi) * (y - yi) / (yj - yi) + xi) 
@@ -130,10 +129,12 @@ console.log(detectPointInPolygon(route[0], polygon))
  * @returns {Array} 
  */
 function makeSeparationArray(in_route, in_polygone) {
-    var separationArray= [route.length]
-    for(let i=0; i<separationArray.length-1; i++) {
+    console.log("test in_route.length" + in_route.length)
+    var separationArray = [in_route.length]
+    for(let i=0; i<in_route.length-1; i++) {
         separationArray[i] = detectPointInPolygon(in_route[i], in_polygone)
     }
+    console.log("test separationArray" + separationArray)
     return separationArray
 }
 // test function sectionSizeCount
