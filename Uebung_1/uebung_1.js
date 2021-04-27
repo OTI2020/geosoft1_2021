@@ -1,7 +1,7 @@
 /**
  * just for better overview
  * @author @OTI2020 Gustav
- * @version 0.6.8 - solve problems and init bubbleSort
+ * @version 0.6.9 - looking for reason for sort problem
  * @function main
  */
 main() //runner for main
@@ -16,7 +16,7 @@ function main() {
     console.log("distArray " + distArray)
 
     var sortedArray = bubbleSort(distArray)
-    console.log(sortedArray)
+    console.log("sortedArray " + sortedArray)
 }
 
 
@@ -109,7 +109,7 @@ function detectPointInPolygon(in_point, in_polygon) {
 
     var inside = false //initial boolean value for the check
     // iterate over the polygon 
-    for (var i = 0, j = in_polygon.length - 1; i < in_polygon.length; j = i++) {
+    for (var i=0, j=in_polygon.length - 1; i<in_polygon.length; j=i++) {
         var xi = in_polygon[i][0] //longitude of vertex i
         var yi = in_polygon[i][1] //latitude of vertex i
         var xj = in_polygon[j][0] //longitude of vertex j
@@ -194,7 +194,7 @@ function sectionCount(in_separationArray) {
  * @param {Array} in_separationArray
  * @returns {Array} 
  */
- function sectionSizeCount(in_sectionArray, in_route, in_separationArray) {
+function sectionSizeCount(in_sectionArray, in_route, in_separationArray) {
     var sectionSizeCounter = 0
     for(let i=0; i<in_separationArray.length-2; i++) {
         if (in_separationArray[i] != in_separationArray[i+1]) {
@@ -225,17 +225,17 @@ function sectionCount(in_separationArray) {
  * @param {Array} in_distanceArray - the Array with the distances 
  * @returns {Array}
  */
- function bubbleSort(in_distanceArray) {
-    for (var i = 0; i < in_distanceArray.length; i++) {
-      if (in_distanceArray[i] > in_distanceArray[i + 1]) {
-        var a = in_distanceArray[i]
-        var b = in_distanceArray[i + 1]
-        in_distanceArray[i] = b
-        in_distanceArray[i + 1] = a
-      }
+function bubbleSort(in_distanceArray) {
+    for (let i = 0; i<in_distanceArray.length; i++) {
+        if (in_distanceArray[i] > in_distanceArray[i + 1]) {
+            var a = in_distanceArray[i]
+            var b = in_distanceArray[i + 1]
+            in_distanceArray[i] = b
+            in_distanceArray[i + 1] = a
+        }
     }
     return in_distanceArray;
-  }
+ }
 
 
 /**
