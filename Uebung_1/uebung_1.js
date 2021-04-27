@@ -1,7 +1,7 @@
 /**
  * just for better overview
  * @author @OTI2020 Gustav
- * @version 0.7.3 - rename functions
+ * @version 0.7.4 - capitulation
  * @function main
  */
 main() //runner for main
@@ -189,20 +189,6 @@ function sectionCount(in_separationArray) {
 // test function sectionCount
 // console.log("test sectionCounter")
 // console.log(sectionCount(makeSeparationArray(route, polygon)))
-
-
-/**
- *  
- * @function createBooleanArray 
- */
-function createBooleanArray(in_route, in_polygone) {
-    var booleanArray = []
-    if (detectPointInPolygon(in_route[0], in_polygone)=true) {
-        booleanArray[0] = true
-    } else {
-        booleanArray[0] = false
-    }
-}
 
 
 /**
