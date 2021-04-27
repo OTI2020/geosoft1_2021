@@ -14,7 +14,7 @@ function main() {
     console.log(sectionArray)
     // console.log("sectionArray " + sectionArray)
     
-    var distArray = sectionSizeCount(sectionArray, route, separationArray)
+    var distArray = sectionSizeCount(sectionArray, route, separationArray, polygon)
     console.log(distArray)
     // console.log("distArray " + distArray)
 
@@ -210,9 +210,10 @@ function createBooleanArray(in_route, in_polygone) {
  * @param {Array} in_sectionArray
  * @param {Array} in_route
  * @param {Array} in_separationArray
+ * @param {Array} in_polygone
  * @returns {Array} 
  */
-function sectionSizeCount(in_sectionArray, in_route, in_separationArray) {
+function sectionSizeCount(in_sectionArray, in_route, in_separationArray, in_polygone) {
     var rowOneArray = [route[0]]
     var rowTwoArray = []
 
