@@ -7,11 +7,18 @@
 main() //runner for main
 function main() {
     // test1 main
-    console.log("test main my paraklet")
+    console.log("test main my paraklet ")
     
     var separationArray = makeSeparationArray(route, polygon)
+    
+    console.log("separationArray " + separationArray);
+    
     var sectionArray = sectionCount(separationArray)
-    sectionSizeCount(sectionArray)
+
+    console.log("sectionArray " + sectionArray);
+    console.log("separationArray " + separationArray);
+
+    sectionSizeCount(sectionArray, route, separationArray)
     // test2 main
     console.log("test2 main " + sectionSizeCount(sectionArray))
 }
@@ -40,24 +47,28 @@ function changeLatLon(point) {
  * Each point-coordinates represent one latitude and one 
  * longitude.
  * @function calculateDistanceBetweenTwoPoints
- * @param {Array} pointA - two points as arrays
- * @param {Array} pointB
+ * @param {Array} in_pointA - two points as arrays
+ * @param {Array} in_pointB
  * @return {float} - returns the distance between pointA 
  * and PointB
  * Algorithim like this: 
  * https://www.movable-type.co.uk/scripts/latlong.html
  */
- function calculateDistanceBetweenTwoPoints(pointA, pointB) {
+ function calculateDistanceBetweenTwoPoints(in_pointA, in_pointB) {
     const p = Math.PI/180 // PI/180 is ca. 0.017453292519943295
     const R = 6371e3; // R is earth’s radius (mean radius = 6,371 km)
     var c = Math.cos // cosisnus
     var s = Math.sin // sinus
     var at = Math.atan2 // arctan2
     
-    var lat1 = pointA[1] // latitude of pointA
-    var lon1 = pointA[0] // longitude of pointA
-    var lat2 = pointB[1] // latitude of pointB
-    var lon2 = pointB[0] // longitude of pointB
+    // test
+    // console.log("pointA " + in_pointA)
+    // console.log("pointB " + in_pointB)
+
+    var lat1 = in_pointA[1] // latitude of pointA
+    var lon1 = in_pointA[0] // longitude of pointA
+    var lat2 = in_pointB[1] // latitude of pointB
+    var lon2 = in_pointB[0] // longitude of pointB
     
     // multiplication with p to convert from degree to radian
     // for the use in trigonomic functions
@@ -143,11 +154,15 @@ function makeSeparationArray(in_route, in_polygone) {
         separationArray[i] = detectPointInPolygon(in_route[i], in_polygone)
     }
     // console.log("test separationArray" + separationArray)
+
+    // array that says for every point if it is inside the polygone
     return separationArray
 }
 // test function sectionSizeCount
-// console.log("test makeSeparationArray")
-// console.log(makeSeparationArray(route, polygon))
+// 
+console.log("test makeSeparationArray")
+// 
+console.log(makeSeparationArray(route, polygon))
 
 
 /**
@@ -167,11 +182,15 @@ function sectionCount(in_separationArray) {
         }
     }
     var out_sectionArray = [sectionCounter]
+    // out_sectionArray.push(sectionCounter)
+    console.log("out_sectionArray " + out_sectionArray);
     return out_sectionArray
 }
 // test function sectionCount
-// console.log("test sectionCounter")
-// console.log(sectionCount(makeSeparationArray(route, polygon)))
+// 
+console.log("test sectionCounter")
+// 
+console.log(sectionCount(makeSeparationArray(route, polygon)))
 
 
 /**
@@ -179,16 +198,26 @@ function sectionCount(in_separationArray) {
  * 
  * @function sectionSizeCount
  * @param {Array} in_sectionArray
+ * @param {Array} in_route
  * @returns {Array}
  */
- function sectionSizeCount(in_sectionArray) {
+ function sectionSizeCount(in_sectionArray, in_route, in_separationArray) {
+
+    console.log("in_sectionArray " + in_sectionArray)
+    // console.log("in_separationArray.length " + in_separationArray.length)
+    console.log(in_separationArray)
+
     var sectionSizeCounter = 0
-    for(let i=0; i<in_sectionArray.length-2; i++) {
-        if (in_sectionArray[i] != in_sectionArray[i+1]) {
+    for(let i=0; i<in_separationArray.length-2; i++) {
+        console.log("i" + i)
+        if (in_separationArray[i] != in_separationArray[i+1]) {
             sectionSizeCounter ++
         }
-        else in_sectionArray[sectionSizeCounter]+=calculateDistanceBetweenTwoPoints(in_sectionArray[i], in_sectionArray[i+1])
+        else {
+            in_sectionArray[sectionSizeCounter]+=calculateDistanceBetweenTwoPoints(in_route[i], in_route[i+1])
+        }
      }
+     console.log("test in_sectionArray " + in_sectionArray)
      return in_sectionArray
 }
 // test function sectionSizeCount
