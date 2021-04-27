@@ -1,23 +1,25 @@
 /**
- * TODO
  * just for better overview
  * @author @OTI2020 Gustav
+ * @version 0.6.6 - testing with console.log()
  * @function main
  */
 main() //runner for main
 function main() {
-    // test main
+    // test1 main
     console.log("test main my paraklet")
     
     var separationArray = makeSeparationArray(route, polygon)
     var sectionArray = sectionCount(separationArray)
     sectionSizeCount(sectionArray)
+    // test2 main
+    console.log("test2 main " + sectionSizeCount(sectionArray))
 }
 
 
 /**
  * only for testing if lat and lon are swapped
- * function swapped lat and lon
+ * function swapps lat and lon
  * @function changeLatLon
  * @param {Array} point
  * @returns {Array}
@@ -135,12 +137,12 @@ function detectPointInPolygon(in_point, in_polygon) {
  * @returns {Array} 
  */
 function makeSeparationArray(in_route, in_polygone) {
-    console.log("test in_route.length" + in_route.length)
+    // console.log("test in_route.length" + in_route.length)
     var separationArray = [in_route.length]
     for(let i=0; i<in_route.length-1; i++) {
         separationArray[i] = detectPointInPolygon(in_route[i], in_polygone)
     }
-    console.log("test separationArray" + separationArray)
+    // console.log("test separationArray" + separationArray)
     return separationArray
 }
 // test function sectionSizeCount
@@ -190,8 +192,10 @@ function sectionCount(in_separationArray) {
      return in_sectionArray
 }
 // test function sectionSizeCount
-// console.log("test sectionSizeCounter")
-// console.log(sectionSizeCount(sectionCount(makeSeparationArray(route, polygon))))
+// 
+console.log("test sectionSizeCounter")
+// 
+console.log(sectionSizeCount(sectionCount(makeSeparationArray(route, polygon))))
 
 
 /**
