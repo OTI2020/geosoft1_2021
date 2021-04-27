@@ -20,10 +20,10 @@ Practice for the first Geosoftware course at the Institute for Geoinformatics at
 ### sectionSizeCount()
 * Function prepares moredimensional array for the use in the html-file
 * fill colums with:
-* - distance
-* - startcoordinate
-* - endcoordinate
-* - boolean value that says if point is in- or outside polygon
+ - distance
+ - startcoordinate
+ - endcoordinate
+ - boolean value that says if point is in- or outside polygon
 
 ### function bubbleSort(in_distanceArray) {
 * bubbleSort is needed to sort the array. The shortest distance gets on top etc.
