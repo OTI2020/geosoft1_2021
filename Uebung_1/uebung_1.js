@@ -1,7 +1,7 @@
 /**
  * just for better overview
  * @author @OTI2020 Gustav
- * @version 0.7.0 - prepare table for html
+ * @version 0.7.1 - collect data for table
  * @function main
  */
 main() //runner for main
@@ -192,6 +192,20 @@ function sectionCount(in_separationArray) {
 
 
 /**
+ *  
+ * @function createBooleanArray 
+ */
+function createBooleanArray(in_route, in_polygone) {
+    var booleanArray = []
+    if (detectPointInPolygon(in_route[0], in_polygone)=true) {
+        booleanArray[0] = true
+    } else {
+        booleanArray[0] = false
+    }
+}
+
+
+/**
  * @function sectionSizeCount
  * @param {Array} in_sectionArray
  * @param {Array} in_route
@@ -216,15 +230,26 @@ function sectionSizeCount(in_sectionArray, in_route, in_separationArray) {
      }
      rowTwoArray.push(route[route.length-1])
 
-     console.log("tabellenvorbereitung")
+     console.log("table preparation")
      console.log(rowOneArray)
      console.log(rowTwoArray)
 
+    // array to show if section is in. or outside the given polygone
+    var booleanArray = []
+    if (detectPointInPolygon(in_route[0], in_polygone)=true) {
+        booleanArray[0] = true
+    } else {
+        booleanArray[0] = false
+    }
+    for(let i=0; i<rowTwoArray.length-1; i++) {
+            booleanArray[i+1] =! booleanArray[i]
+    }
+     
      var tableArray = [[],[],[],[]]
      tableArray[0].push(in_sectionArray)
      tableArray[1].push(rowOneArray)
      tableArray[2].push(rowTwoArray)
-     tableArray[3].push()
+     tableArray[3].push(booleanArray)
 
      // sum is for saveing the sum of all elements in the in_sectionArray
      var sum = 0 
