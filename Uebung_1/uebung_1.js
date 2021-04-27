@@ -1,7 +1,7 @@
 /**
  * just for better overview
  * @author @OTI2020 Gustav
- * @version 0.7.1 - collect data for table
+ * @version 0.7.3 - rename functions
  * @function main
  */
 main() //runner for main
