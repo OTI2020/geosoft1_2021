@@ -77,43 +77,50 @@ function changeLatLon(point) {
     return dist
 }
 // test function calculateDistanceBetweenTwoPoints
-console.log("test calculateDistanceBetweenTwoPoints")
-console.log(calculateDistanceBetweenTwoPoints(changeLatLon(polygon[0]), changeLatLon(polygon[1])))
-console.log(calculateDistanceBetweenTwoPoints(polygon[0], polygon[1]))
+// console.log("test calculateDistanceBetweenTwoPoints")
+// console.log(calculateDistanceBetweenTwoPoints(changeLatLon(polygon[0]), changeLatLon(polygon[1])))
+// console.log(calculateDistanceBetweenTwoPoints(polygon[0], polygon[1]))
 
 
 /**
- * TODO #1: 
- * 
+ * The edges of the given polygon are parallel to the latitudes
+ * and longitudes respectively. Therefore we only need two 
+ * values for the latitudes and longitudes in order to compare
+ * our in_point with them. The function finds out if a given 
+ * point is inside a given polygone 
  * @function detectPointInPolygon
- * @param {Array} in_point - needs a polygon as an array and the point as an array
- * @param {Array} in_polygon 
+ * @param {Array} in_point - contains one latitude and one longitude. 
+ * @param {Array} in_polygon - edges of polygon are parallel to the 
+ * latitudes and longitudes respectively.
  * @return {boolean} - returns true if the point is inside the polygon or 
  * on the border of the polygon and false if the point is not inside the polygon
  */
 function detectPointInPolygon(in_point, in_polygon) {
-    var x = in_point[0] //longitude of the point
-    var y = in_point[1] //latitude of the point
+    var x = in_point[0] // longitude of the point
+    var y = in_point[1] // latitude of the point
 
-    var inside = false //initial value for the check
-    for (var i = 0, j = in_polygon.length - 1; i < in_polygon.length; j = i++) { //iterate over the polygon 
+    var inside = false //initial boolean value for the check
+    // iterate over the polygon 
+    for (var i = 0, j = in_polygon.length - 1; i < in_polygon.length; j = i++) {
         var xi = in_polygon[i][0] //longitude of vertex i
         var yi = in_polygon[i][1] //latitude of vertex i
         var xj = in_polygon[j][0] //longitude of vertex j
         var yj = in_polygon[j][1] //latitude of vertex j
         
-        //check if the casted ray intersect relevant segments of the polygon
-        var intersect = ((yi > y) != (yj > y)) && (x < (xj - xi) * (y - yi) / (yj - yi) + xi) 
-        
-        if (intersect) { //if the casted ray intersect a relevant segment the inside value is changend
-            inside = !inside 
+        // check if the in_point is between the both lat and the both lon values
+        // contain saves the boolean result
+        var contain = ((yi > y) != (yj > y)) && (x < (xj - xi) * (y - yi) / (yj - yi) + xi) 
+        // in_point is inside, if contain = true
+        if (contain) { 
+            inside = true 
         } 
     }
-    return inside; //return the result (true for odd number of relevat segments intersected and false for an even number of relevant segments intersected)
+    // return the boolean result
+    return inside; 
 }
 // test function detectPointInPolygon
-console.log("test detectPointInPolygon")
-console.log(detectPointInPolygon(route[0], polygon))
+// console.log("test detectPointInPolygon")
+// console.log(detectPointInPolygon(route[0], polygon))
 
 
 /**
@@ -137,8 +144,8 @@ function makeSeparationArray(in_route, in_polygone) {
     return separationArray
 }
 // test function sectionSizeCount
-console.log("test makeSeparationArray")
-console.log(makeSeparationArray(route, polygon))
+// console.log("test makeSeparationArray")
+// console.log(makeSeparationArray(route, polygon))
 
 
 /**
@@ -161,8 +168,8 @@ function sectionCount(in_separationArray) {
     return out_sectionArray
 }
 // test function sectionCount
-console.log("test sectionCounter")
-console.log(sectionCount(makeSeparationArray(route, polygon)))
+// console.log("test sectionCounter")
+// console.log(sectionCount(makeSeparationArray(route, polygon)))
 
 
 /**
@@ -183,8 +190,8 @@ console.log(sectionCount(makeSeparationArray(route, polygon)))
      return in_sectionArray
 }
 // test function sectionSizeCount
-console.log("test sectionSizeCounter")
-console.log(sectionSizeCount(sectionCount(makeSeparationArray(route, polygon))))
+// console.log("test sectionSizeCounter")
+// console.log(sectionSizeCount(sectionCount(makeSeparationArray(route, polygon))))
 
 
 /**
