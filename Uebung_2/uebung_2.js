@@ -14,7 +14,7 @@ function main() {
     console.log(sectionArray)
     // console.log("sectionArray " + sectionArray)
     
-    var distArray = sectionSizeCount(sectionArray, route, separationArray, polygon)
+    var distArray = sectionSizeCount(sectionArray, route, separationArray)
     console.log(distArray)
     // console.log("distArray " + distArray)
 
@@ -196,10 +196,9 @@ function sectionCount(in_separationArray) {
  * @param {Array} in_sectionArray
  * @param {Array} in_route
  * @param {Array} in_separationArray
- * @param {Array} in_polygone
  * @returns {Array} 
  */
-function sectionSizeCount(in_sectionArray, in_route, in_separationArray, in_polygone) {
+function sectionSizeCount(in_sectionArray, in_route, in_separationArray) {
     var rowOneArray = [route[0]]
     var rowTwoArray = []
 
@@ -215,6 +214,8 @@ function sectionSizeCount(in_sectionArray, in_route, in_separationArray, in_poly
             in_sectionArray[sectionSizeCounter]+=calculateDistanceBetweenTwoPoints(in_route[i], in_route[i+1])
         }
      }
+
+     /*
      rowTwoArray.push(route[route.length-1])
 
      console.log("table preparation")
@@ -237,6 +238,7 @@ function sectionSizeCount(in_sectionArray, in_route, in_separationArray, in_poly
      tableArray[1].push(rowOneArray)
      tableArray[2].push(rowTwoArray)
      tableArray[3].push(booleanArray)
+     */
 
      // sum is for saveing the sum of all elements in the in_sectionArray
      var sum = 0 
@@ -245,9 +247,10 @@ function sectionSizeCount(in_sectionArray, in_route, in_separationArray, in_poly
             sum += in_sectionArray[j]
      }
      // last storage place in in_sectionArrayrepresents sum
-     // in_sectionArray[sectionSizeCounter+1] =  sum 
+     in_sectionArray[sectionSizeCounter+1] =  sum 
 
-     return tableArray
+     // return tableArray
+     return in_sectionArray
 }
 // test function sectionSizeCount
 // console.log("test sectionSizeCounter")
