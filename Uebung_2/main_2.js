@@ -11,14 +11,23 @@
      // console.log("separationArray " + separationArray)
      
      var sectionArray = sectionCount(separationArray)
+     console.log("sectionArray")
      console.log(sectionArray)
      // console.log("sectionArray " + sectionArray)
      
      var distArray = sectionSizeCount(sectionArray, route, separationArray)
+     console.log("distArray")
      console.log(distArray)
      // console.log("distArray " + distArray)
+
+     var result = add_boolean_values(distArray, separationArray)
+     console.log("result")
+     console.log(result);
  
-     var sortedArray = bubbleSort(distArray)
+     var sortedArray = bubbleSort(result)
+     console.log("sortedArray")
      console.log(sortedArray)
+
+     var temp = update_table(sortedArray)
      // console.log("sortedArray " + sortedArray)
  }

@@ -157,7 +157,7 @@ function sectionCount(in_separationArray) {
             sectionCounter++
         }
     }
-    var out_sectionArray = [0]
+    var out_sectionArray = []
     // new array is created and as big as there are sections
     // plus 1 to sum every entry up in the final array spot
     for(let j = 0; j<sectionCounter; j++){       
@@ -180,21 +180,40 @@ function sectionCount(in_separationArray) {
  * @returns {Array} 
  */
 function sectionSizeCount(in_sectionArray, in_route, in_separationArray) {
-    var rowOneArray = [route[0]]
-    var rowTwoArray = []
+    var row1_startArray = [route[0]]
+    var row2_endArray = []
 
+    var points_and_distances_array = []
     var sectionSizeCounter = 0
     for(let i=0; i<in_separationArray.length-2; i++) {
         if (in_separationArray[i] != in_separationArray[i+1]) {
             sectionSizeCounter ++
 
-            rowOneArray.push(route[i]) // end of current section
-            rowTwoArray.push(route[i+1]) // beginning of next section
+            row1_startArray.push(route[i+1]) // beginning of current section
+            row2_endArray.push(route[i]) // end of next section
         }
         else {
             in_sectionArray[sectionSizeCounter]+=calculateDistanceBetweenTwoPoints(in_route[i], in_route[i+1])
         }
      }
+     row2_endArray.push(in_route[in_route.length-1])
+
+     console.log(row1_startArray)
+     console.log(row2_endArray)
+
+     
+     for(let i=0; i<row1_startArray.length; i++) {
+        var json_temp = {
+            "startPoint" : row1_startArray[i],
+            "endPoint" : row2_endArray[i],
+            "distance" : in_sectionArray[i]
+        }
+        points_and_distances_array.push(json_temp)
+     }
+
+     console.log("testArray")
+     console.log(points_and_distances_array)
+     
 
      /*
      rowTwoArray.push(route[route.length-1])
@@ -220,46 +239,103 @@ function sectionSizeCount(in_sectionArray, in_route, in_separationArray) {
      tableArray[2].push(rowTwoArray)
      tableArray[3].push(booleanArray)
      */
-
-     // sum is for saveing the sum of all elements in the in_sectionArray
-     var sum = 0 
-     // itterate through in_sectionArray and add every entry to sum
-     for(let j = 0; j<in_sectionArray.length-1; j++){ 
-            sum += in_sectionArray[j]
-     }
-     // last storage place in in_sectionArrayrepresents sum
-     in_sectionArray[sectionSizeCounter+1] =  sum 
-
+     
      // return tableArray
-     return in_sectionArray
+     return points_and_distances_array
 }
 // test function sectionSizeCount
 // console.log("test sectionSizeCounter")
 // console.log(sectionSizeCount(sectionCount(makeSeparationArray(route, polygon))))
 
 
+/**
+ * returns the total length of given route
+ * @param {} in_sectionArray 
+ * @returns sum
+ */
+function summation(in_sectionArray) {
+     // sum is for saveing the sum of all elements in the in_sectionArray
+     var sum = 0 
+     // itterate through in_sectionArray and add every entry to sum
+     for(let j = 0; j<in_sectionArray.length-1; j++){ 
+            sum += in_sectionArray[j]
+     }
+     return sum
+}
 
+
+/**
+ * 
+ * @param {Array} objectArray 
+ * @param {Array} separationArray 
+ */
+function add_boolean_values(objectArray, separationArray) {
+    var booleanArray = [separationArray[0]]
+    var JSONtemp =[]
+    console.log(booleanArray);
+    for(let i=1; i<objectArray.length; i++) {
+        booleanArray[i] = !booleanArray[i-1]
+        console.log(booleanArray);
+
+    }
+
+    for(var i=0;i<objectArray.length;i++){
+        var temptest={
+            "startPoint" : objectArray[i].startPoint,
+            "endPoint" : objectArray[i].endPoint,
+            "distance" : objectArray[i].distance,
+            "is_in_polygone" : booleanArray[i]
+        }
+        JSONtemp.push(temptest)
+
+    }
+    return JSONtemp
+}
 
 
 /**
  * bubbleSort is needed to sort the array. The shortest distance gets on top etc.
  * @function bubbleSort
- * @param {Array} in_distanceArray - the Array with the distances 
+ * @param {Array} in_jsonArray - the Array with the distances 
  * @returns {Array}
  * Algorithm like this:
  * https://medium.com/javascript-algorithms/javascript-algorithms-bubble-sort-3d27f285c3b2
  */
-function bubbleSort(in_distanceArray) {
-    for (let i = 0; i < in_distanceArray.length; i++) {
-        for (let j = 0; j < in_distanceArray.length; j++) {
-            if (in_distanceArray[j] > in_distanceArray[j + 1]) {
-                let tmp = in_distanceArray[j]
-                in_distanceArray[j] = in_distanceArray[j + 1]
-                in_distanceArray[j + 1] = tmp
+function bubbleSort(in_jsonArray) {
+    console.log(in_jsonArray[0].distance);
+    for (let i = 0; i < in_jsonArray.length; i++) {
+        for (let j = 0; j < in_jsonArray.length-1; j++) {
+            console.log(in_jsonArray[j].distance);
+            if (in_jsonArray[j].distance > in_jsonArray[j+1].distance) {
+                let tmp = in_jsonArray[j]
+                in_jsonArray[j] = in_jsonArray[j + 1]
+                in_jsonArray[j + 1] = tmp
             }
         }
     }
-    return in_distanceArray
+    return in_jsonArray
+}
+
+
+function update_table(result) {
+
+    var table = document.getElementById("table1");
+
+console.log("TABÖE");
+    //generate table
+  
+    for (var i= 0; i<result.length;i++){
+  
+  
+     var row = table.insertRow();
+  
+      row.insertCell().innerHTML=result[i].distance;
+      row.insertCell().innerHTML=result[i].startPoint;
+      row.insertCell().innerHTML=result[i].endPoint;
+      row.insertCell().innerHTML=result[i].is_in_polygone;
+    }
+  
+    
 }
 /**
  * This function creates an array that contians, what the
@@ -273,3 +349,4 @@ function bubbleSort(in_distanceArray) {
  * in addition, the total length of these route sections 
  * should be indicated on the page.
  */
+
