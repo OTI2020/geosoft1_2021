@@ -1,23 +1,23 @@
 /**
  * just for better overview
  * @author @OTI2020 Gustav
- * @version 0.7.4 - capitulation
+ * @version 0.8.0 - finished
  */
 
 
 /**
  * only for testing if lat and lon are swapped
  * function swapps lat and lon
- * @function changeLatLon
- * @param {Array} point
+ * @function change_lat_lon
+ * @param {Array} in_point
  * @returns {Array}
  */
-function changeLatLon(point) {
-    var temp = point[0]
-    point[0] = point[1]
-    point[1] = temp
+function change_lat_lon(in_point) {
+    var temp = in_point[0]
+    in_point[0] = in_point[1]
+    in_point[1] = temp
 
-    return point
+    return in_point
 }
 
 
@@ -27,7 +27,7 @@ function changeLatLon(point) {
  * the earth is a little elliptic. 
  * Each point-coordinates represent one latitude and one 
  * longitude.
- * @function calculateDistanceBetweenTwoPoints
+ * @function calculate_distance_between_2_points
  * @param {Array} in_pointA - two points as arrays
  * @param {Array} in_pointB
  * @return {float} - returns the distance between pointA 
@@ -35,16 +35,12 @@ function changeLatLon(point) {
  * Algorithim like this: 
  * https://www.movable-type.co.uk/scripts/latlong.html
  */
- function calculateDistanceBetweenTwoPoints(in_pointA, in_pointB) {
+ function calculate_distance_between_2_points(in_pointA, in_pointB) {
     const p = Math.PI/180 // PI/180 is ca. 0.017453292519943295
     const R = 6371e3; // R is earth’s radius (mean radius = 6,371 km)
     var c = Math.cos // cosisnus
     var s = Math.sin // sinus
     var at = Math.atan2 // arctan2
-    
-    // test
-    // console.log("pointA " + in_pointA)
-    // console.log("pointB " + in_pointB)
 
     var lat1 = in_pointA[1] // latitude of pointA
     var lon1 = in_pointA[0] // longitude of pointA
@@ -70,9 +66,6 @@ function changeLatLon(point) {
     // returns distance between the both input points
     return dist
 }
-// test function calculateDistanceBetweenTwoPoints
-// console.log("test calculateDistanceBetweenTwoPoints")
-// console.log(calculateDistanceBetweenTwoPoints(polygon[0], polygon[1]))
 
 
 /**
@@ -81,14 +74,14 @@ function changeLatLon(point) {
  * values for the latitudes and longitudes in order to compare
  * our in_point with them. The function finds out if a given 
  * point is inside a given polygone 
- * @function detectPointInPolygon
+ * @function detect_point_in_polygon
  * @param {Array} in_point - contains one latitude and one longitude. 
  * @param {Array} in_polygon - edges of polygon are parallel to the 
  * latitudes and longitudes respectively.
  * @return {boolean} - returns true if the point is inside the polygon or 
  * on the border of the polygon and false if the point is not inside the polygon
  */
-function detectPointInPolygon(in_point, in_polygon) {
+function detect_point_in_polygon(in_point, in_polygon) {
     var x = in_point[0] // longitude of the point
     var y = in_point[1] // latitude of the point
 
@@ -111,9 +104,6 @@ function detectPointInPolygon(in_point, in_polygon) {
     // return the boolean result
     return inside; 
 }
-// test function detectPointInPolygon
-// console.log("test detectPointInPolygon")
-// console.log(detectPointInPolygon(route[0], polygon))
 
 
 /**
@@ -122,143 +112,118 @@ function detectPointInPolygon(in_point, in_polygon) {
  * For each point of the in_route, we save the information if it
  * is in- or outsine the in_polygone in the separationArray.
  * The separationArray is declaired in the following.
- * @function makeSeparationArray
+ * @function make_separation_array
  * @param {Array} in_route - array of points
  * @param {Array} in_polygon - given polygone
  * @returns {Array} 
  */
-function makeSeparationArray(in_route, in_polygone) {
+function make_separation_array(in_route, in_polygone) {
     // console.log("test in_route.length" + in_route.length)
-    var separationArray = [in_route.length]
+    var separation_array = [in_route.length]
     for(let i=0; i<in_route.length-1; i++) {
-        separationArray[i] = detectPointInPolygon(in_route[i], in_polygone)
+        separation_array[i] = detect_point_in_polygon(in_route[i], in_polygone)
     }
     // array that says for every point if it is inside the polygone
-    return separationArray
+    return separation_array
 }
-// test function sectionSizeCount
-// console.log("test makeSeparationArray")
-// console.log(makeSeparationArray(route, polygon))
 
 
 /**
  * The purpose is to get the number of all sections and 
  * create an array with a corresponding number of storage space.
  * @function sectionCount
- * @param {Array} in_separationArray
+ * @param {Array} in_separation_array
  * @returns {Array} out_sectionArray
  */
-function sectionCount(in_separationArray) {
+function section_count(in_separation_array) {
     // Starting with 1 and not 0, because we actually only count
     // the intersections/changes of section
-    var sectionCounter = 1
-    for(let i=0; i<in_separationArray.length-2; i++) {
-        if (in_separationArray[i] != in_separationArray[i+1]) {
-            sectionCounter++
+    var section_counter = 1
+    for(let i=0; i<in_separation_array.length-2; i++) {
+        if (in_separation_array[i] != in_separation_array[i+1]) {
+            section_counter++
         }
     }
-    var out_sectionArray = []
+    var out_section_array = []
     // new array is created and as big as there are sections
     // plus 1 to sum every entry up in the final array spot
-    for(let j = 0; j<sectionCounter; j++){       
-        out_sectionArray.push(0)
+    for(let j = 0; j<section_counter; j++){       
+        out_section_array.push(0)
     }
     // returning array has as much storage space
     // as sections of the route exists
-    return out_sectionArray
+    return out_section_array
 }
-// test function sectionCount
-// console.log("test sectionCounter")
-// console.log(sectionCount(makeSeparationArray(route, polygon)))
 
 
 /**
- * @function sectionSizeCount
- * @param {Array} in_sectionArray
+ * returns an array that contains distance, start- and 
+ * endcoordinates of all sections of given route.
+ * A JSON-Object is used here to create this complex array.
+ * @function section_size_count
+ * @param {Array} in_section_array
  * @param {Array} in_route
- * @param {Array} in_separationArray
+ * @param {Array} in_separation_array
  * @returns {Array} 
  */
-function sectionSizeCount(in_sectionArray, in_route, in_separationArray) {
-    var row1_startArray = [route[0]]
-    var row2_endArray = []
+function section_size_count(in_section_array, in_route, in_separation_array) {
+    // declair arrays that will contain start- and endcoordinates of all sections
+    var row1_start_array = [route[0]] // start of route = start of first section
+    var row2_end_array = [] // first element filled in first iteration ...
 
+    // later the following array will contain the both above and the
+    // in_section_array which saves the distances of all sections
     var points_and_distances_array = []
-    var sectionSizeCounter = 0
-    for(let i=0; i<in_separationArray.length-2; i++) {
-        if (in_separationArray[i] != in_separationArray[i+1]) {
-            sectionSizeCounter ++
 
-            row1_startArray.push(route[i+1]) // beginning of current section
-            row2_endArray.push(route[i]) // end of next section
+    // the following variable section_size_counter gets increased
+    // only if the current section ends. 
+    var section_size_counter = 0
+    for(let i=0; i<in_separation_array.length-2; i++) {
+        if (in_separation_array[i] != in_separation_array[i+1]) {
+            section_size_counter ++
+
+            // end_coordinate of the current section gets saved and
+            // start_coordinate of the next section          
+            row2_end_array.push(route[i]) // end of next section
+            row1_start_array.push(route[i+1]) // beginning of current section
         }
         else {
-            in_sectionArray[sectionSizeCounter]+=calculateDistanceBetweenTwoPoints(in_route[i], in_route[i+1])
+            // the distance of every section is a sum
+            // of corresponding partial distances.
+            in_section_array[section_size_counter]+=calculate_distance_between_2_points(in_route[i], in_route[i+1])
         }
      }
-     row2_endArray.push(in_route[in_route.length-1])
 
-     console.log(row1_startArray)
-     console.log(row2_endArray)
+     // end of route = end of last section
+     row2_end_array.push(in_route[in_route.length-1])
 
-     
-     for(let i=0; i<row1_startArray.length; i++) {
+     // create JSON-Object - later it is needed to sort all array
+     // without loosing the relation
+     for(let i=0; i<row1_start_array.length; i++) {
         var json_temp = {
-            "startPoint" : row1_startArray[i],
-            "endPoint" : row2_endArray[i],
-            "distance" : in_sectionArray[i]
+            "startPoint" : row1_start_array[i],
+            "endPoint" : row2_end_array[i],
+            "distance" : in_section_array[i]
         }
         points_and_distances_array.push(json_temp)
      }
-
-     console.log("testArray")
-     console.log(points_and_distances_array)
-     
-
-     /*
-     rowTwoArray.push(route[route.length-1])
-
-     console.log("table preparation")
-     console.log(rowOneArray)
-     console.log(rowTwoArray)
-
-    // array to show if section is in. or outside the given polygone
-    var booleanArray = []
-    if (detectPointInPolygon(in_route[0], in_polygone)=true) {
-        booleanArray[0] = true
-    } else {
-        booleanArray[0] = false
-    }
-    for(let i=0; i<rowTwoArray.length-1; i++) {
-            booleanArray[i+1] =! booleanArray[i]
-    }
-     
-     var tableArray = [[],[],[],[]]
-     tableArray[0].push(in_sectionArray)
-     tableArray[1].push(rowOneArray)
-     tableArray[2].push(rowTwoArray)
-     tableArray[3].push(booleanArray)
-     */
-     
+       
      // return tableArray
      return points_and_distances_array
 }
-// test function sectionSizeCount
-// console.log("test sectionSizeCounter")
-// console.log(sectionSizeCount(sectionCount(makeSeparationArray(route, polygon))))
 
 
 /**
  * returns the total length of given route
- * @param {} in_sectionArray 
+ * @param {} in_section_array 
  * @returns sum
  */
-function summation(in_sectionArray) {
-     // sum is for saveing the sum of all elements in the in_sectionArray
+function summation(in_section_array) {
+     // sum is for saveing the sum of all elements in the in_section_array 
      var sum = 0 
-     // itterate through in_sectionArray and add every entry to sum
-     for(let j = 0; j<in_sectionArray.length-1; j++){ 
-            sum += in_sectionArray[j]
+     // itterate through in_section_array  and add every entry to sum
+     for(let j = 0; j<in_section_array.length-1; j++){ 
+            sum += in_section_array[j]
      }
      return sum
 }
@@ -266,28 +231,25 @@ function summation(in_sectionArray) {
 
 /**
  * 
- * @param {Array} objectArray 
- * @param {Array} separationArray 
+ * @param {Array} object_array 
+ * @param {Array} separation_array 
  */
-function add_boolean_values(objectArray, separationArray) {
-    var booleanArray = [separationArray[0]]
+function add_boolean_values(object_array, separation_array) {
+    var boolean_array = [separation_array[0]]
     var JSONtemp =[]
-    console.log(booleanArray);
-    for(let i=1; i<objectArray.length; i++) {
-        booleanArray[i] = !booleanArray[i-1]
-        console.log(booleanArray);
+    for(let i=1; i<object_array.length; i++) {
+        boolean_array[i] = !boolean_array[i-1]
 
     }
 
-    for(var i=0;i<objectArray.length;i++){
+    for(var i=0;i<object_array.length;i++){
         var temptest={
-            "startPoint" : objectArray[i].startPoint,
-            "endPoint" : objectArray[i].endPoint,
-            "distance" : objectArray[i].distance,
-            "is_in_polygone" : booleanArray[i]
+            "startPoint" : object_array[i].startPoint,
+            "endPoint" : object_array[i].endPoint,
+            "distance" : object_array[i].distance,
+            "is_in_polygone" : boolean_array[i]
         }
         JSONtemp.push(temptest)
-
     }
     return JSONtemp
 }
@@ -301,11 +263,9 @@ function add_boolean_values(objectArray, separationArray) {
  * Algorithm like this:
  * https://medium.com/javascript-algorithms/javascript-algorithms-bubble-sort-3d27f285c3b2
  */
-function bubbleSort(in_jsonArray) {
-    console.log(in_jsonArray[0].distance);
+function bubble_sort(in_jsonArray) {
     for (let i = 0; i < in_jsonArray.length; i++) {
         for (let j = 0; j < in_jsonArray.length-1; j++) {
-            console.log(in_jsonArray[j].distance);
             if (in_jsonArray[j].distance > in_jsonArray[j+1].distance) {
                 let tmp = in_jsonArray[j]
                 in_jsonArray[j] = in_jsonArray[j + 1]
@@ -321,9 +281,7 @@ function update_table(result) {
 
     var table = document.getElementById("table1");
 
-console.log("TABÖE");
-    //generate table
-  
+    //generate table  
     for (var i= 0; i<result.length;i++){
   
   
