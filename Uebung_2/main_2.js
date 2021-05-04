@@ -4,8 +4,8 @@
  * @version 0.8.0 - finished
  * @function main
  */
- main() //runner for main
- function main() {    
+main()
+function main() {    
      var separation_array = make_separation_array(route, polygon)
      //console.log(separation_array)
      

@@ -276,35 +276,30 @@ function bubble_sort(in_jsonArray) {
     return in_jsonArray
 }
 
-
+/**
+ * 
+ * @param {JSON-Obj} result 
+ */
 function update_table(result) {
-
-    var table = document.getElementById("table1");
+    var table = document.getElementById("table1")
 
     //generate table  
     for (var i= 0; i<result.length;i++){
-  
-  
-     var row = table.insertRow();
-  
-      row.insertCell().innerHTML=result[i].distance;
-      row.insertCell().innerHTML=result[i].startPoint;
-      row.insertCell().innerHTML=result[i].endPoint;
-      row.insertCell().innerHTML=result[i].is_in_polygone;
-    }
-  
-    
+        var row = table.insertRow()
+        
+        row.insertCell().innerHTML=result[i].distance
+        row.insertCell().innerHTML=result[i].startPoint
+        row.insertCell().innerHTML=result[i].endPoint
+        row.insertCell().innerHTML=result[i].is_in_polygone
+    }   
 }
-/**
- * This function creates an array that contians, what the
- * html-page should show using a table. Route sections 
- * should be presented together with their length and 
- * coordinates, sorted by length.
- */
 
-
-/**
- * in addition, the total length of these route sections 
- * should be indicated on the page.
- */
-
+/*
+function check_ison_input(in_json_object) {
+    if (in_json_object.type == "featureCollection") {
+        while
+    } else if (in_json_object.type == "lineString") {
+        return true        
+    } else return false
+}
+*/

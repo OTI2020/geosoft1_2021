@@ -12,9 +12,19 @@
         </head>
         <body style="background-color: burlywood;">
             <h2> Geosoftware1 Practice</h2>
-            <a href="https://geojson.io/" target="_blank"> Create your own lineString </a>
-            
             <hr>
+            <p> Create your own route in a GeoJSON-format. <p>
+                <a href="https://geojson.io/" target="_blank"> Create your own lineString </a>
+                
+                <p> This text field is for insetring your own route. </p>
+                <textarea id="textField" rows="6" cols="40"></textarea>
+                
+                <p> Are you sure this LineString? </p>
+                <button type="button" onclick="getInput();">Submit</button>
+    
+                <p> Let the programm run with your input or the default route </p> 
+                <button type= "button" onclick="fillTables(route,polygon)">Run</button>
+                
             <table id="table1">
                 <tr>
                     <th>length of distances<br /> in Meters</th>
@@ -23,15 +33,14 @@
                     <th width="80">inside polygone</th>
                 </tr>
             </table>
-            <script language="JavaScript">
-                
-            </script>
-            <hr>
-
-            <a href="https://github.com/OTI2020/geosoft1_2021" target="_blank"> Visit My GitHub Repository </a>
             <script defer type="text/javascript" src="datastore_2/polygon.js"></script> 
             <script defer type="text/javascript" src="datastore_2/route.js"></script> 
             <script defer type="text/javascript" src="uebung_2.js"></script> 
             <script defer type="text/javascript" src="main_2.js"></script>
+            <script>
+                "use strict"
+            </script>
+            <hr>
+            <a href="https://github.com/OTI2020/geosoft1_2021" target="_blank"> Visit My GitHub Repository </a>
         </body> 
     </html> 
