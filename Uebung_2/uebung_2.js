@@ -299,28 +299,32 @@ function update_table(result) {
 // Uebung_2
 
 /**
- * only grants a single LineString or one LineString in a FeatureCollections
- * @param {*} in_geojson 
- * @return
+ * function grants only a single LineString or the first LineString in a FeatureCollections
+ * @param {GeoJSON-Obj} in_geojson 
+ * @return array
  */
 var input_route
 function check_json_input(in_geojson) {
-
-    /*
-    if (in_json_object.type == "featureCollection") {
-
-    } else 
-    */
-
-    // if single LineSting is given
-    if (in_geojson.type == "LineString") {
-        // console.log(in_geojson.type)
-        console.log("check_json_input result: true")
-        input_route = in_geojson.coordinates
-        // console.log(input_route)
-        return input_route
+    console.log("check_json_input START")
+    if (in_geojson.type == "FeatureCollection") {
+        for (let i=0; i<in_geojson.features.length-1; i++) {
+            if (in_geojson.features[i].geometry.type == "LineString") {
+                input_route = in_geojson.features[i].geometry.coordinates
+                console.log("check_json_input result: true")
+                return input_route
+            }
+        }
     } else {
-        console.log("check_json_input result: false")
-        return false
-    } 
+        // if single LineSting is given
+        if (in_geojson.type == "LineString") {
+            // console.log(in_geojson.type)
+            console.log("check_json_input result: true")
+            input_route = in_geojson.coordinates
+            // console.log(input_route)
+            return input_route
+        } else {
+            console.log("check_json_input result: false")
+            return false
+        } 
+    }
 }
