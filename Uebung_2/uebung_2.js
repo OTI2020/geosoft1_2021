@@ -214,22 +214,6 @@ function section_size_count(in_section_array, in_route, in_separation_array) {
 
 
 /**
- * returns the total length of given route
- * @param {} in_section_array 
- * @returns sum
- */
-function summation(in_section_array) {
-     // sum is for saveing the sum of all elements in the in_section_array 
-     var sum = 0 
-     // itterate through in_section_array  and add every entry to sum
-     for(let j = 0; j<in_section_array.length-1; j++){ 
-            sum += in_section_array[j]
-     }
-     return sum
-}
-
-
-/**
  * 
  * @param {Array} object_array 
  * @param {Array} separation_array 
@@ -276,6 +260,7 @@ function bubble_sort(in_jsonArray) {
     return in_jsonArray
 }
 
+
 /**
  * 
  * @param {JSON-Obj} result 
@@ -294,12 +279,48 @@ function update_table(result) {
     }   
 }
 
-/*
-function check_ison_input(in_json_object) {
-    if (in_json_object.type == "featureCollection") {
-        while
-    } else if (in_json_object.type == "lineString") {
-        return true        
-    } else return false
+
+/**
+ * returns the total length of given route
+ * @param {} in_section_array 
+ * @returns sum
+ */
+ function summation(in_section_array) {
+    // sum is for saveing the sum of all elements in the in_section_array 
+    var sum = 0 
+    // itterate through in_section_array  and add every entry to sum
+    for(let j = 0; j<in_section_array.length-1; j++){ 
+           sum += in_section_array[j]
+    }
+    return sum
 }
-*/
+
+
+// Uebung_2
+
+/**
+ * only grants a single LineString or one LineString in a FeatureCollections
+ * @param {*} in_geojson 
+ * @return
+ */
+var input_route
+function check_json_input(in_geojson) {
+
+    /*
+    if (in_json_object.type == "featureCollection") {
+
+    } else 
+    */
+
+    // if single LineSting is given
+    if (in_geojson.type == "LineString") {
+        // console.log(in_geojson.type)
+        console.log("check_json_input result: true")
+        input_route = in_geojson.coordinates
+        // console.log(input_route)
+        return input_route
+    } else {
+        console.log("check_json_input result: false")
+        return false
+    } 
+}
