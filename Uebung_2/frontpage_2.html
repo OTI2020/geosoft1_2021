@@ -13,18 +13,22 @@
         <body style="background-color: burlywood;">
             <h2> Geosoftware1 Practice</h2>
             <hr>
-            <p> Create your own route in a GeoJSON-format. <p>
+            <div style="background-color:green; color:white; padding:20px;">
+                <p> Create your own route in a GeoJSON-format. <p>
                 <a href="https://geojson.io/" target="_blank"> Create your own lineString </a>
                 
                 <p> This text field is for insetring your own route. </p>
                 <textarea id="textField" rows="6" cols="40"></textarea>
                 
                 <p> Are you sure this LineString? </p>
-                <button type="button" onclick="getInput();">Submit</button>
-    
-                <p> Let the programm run with your input or the default route </p> 
-                <button type= "button" onclick="fillTables(route,polygon)">Run</button>
+                <button type="button" onclick="get_input()">Submit</button>
+
+                <p> Let the programm run with the default route </p> 
+                <button type="button" onclick="main()">Run Default</button>
                 
+                <p> Let the programm run with your input </p> 
+                <button type= "button" onclick="fill_tables(route,polygon)">Run</button>
+            </div>    
             <table id="table1">
                 <tr>
                     <th>length of distances<br /> in Meters</th>
