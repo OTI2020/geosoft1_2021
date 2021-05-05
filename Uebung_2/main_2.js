@@ -4,7 +4,7 @@
  * @version 0.8.0 - finished
  * @function main
  */
-main()
+
 function main() {    
      var separation_array = make_separation_array(route, polygon)
      //console.log(separation_array)
@@ -26,4 +26,19 @@ function main() {
      // console.log(sorted_array)
 
      var temp = update_table(sorted_array)
- }
+}
+
+function get_input() {
+    try {
+        var in_lineString = document.getElementById("textField").value 
+        console.log(in_lineString)
+
+        var is_parseable = JSON.parse(in_lineString)
+        console.log(is_parseable)
+
+        // check_json_input(is_parseable)    
+
+    } catch (error) {
+        window.alert("Please insert GeoJSON object")
+    }
+}
