@@ -2,18 +2,24 @@
  * just for better overview
  * @author @OTI2020 Gustav
  * @version 0.8.0 - finished
- * @function main
  */
 
-function main() {    
-     var separation_array = make_separation_array(route, polygon)
-     //console.log(separation_array)
+/**
+ * default route
+ */
+function main() {
+    calculations(route)
+}
+
+function calculations(in_route) {  
+     var separation_array = make_separation_array(in_route, polygon)
+     // console.log(separation_array)
      
      var section_array = section_count(separation_array)
      // console.log("sectionArray")
      // console.log(section_array)
      
-     var dist_array = section_size_count(section_array, route, separation_array)
+     var dist_array = section_size_count(section_array, in_route, separation_array)
      // console.log("distArray")
      // console.log(dist_array)
 
@@ -28,6 +34,7 @@ function main() {
      var temp = update_table(sorted_array)
 }
 
+
 function get_input() {
     try {
         var in_lineString = document.getElementById("textField").value 
@@ -36,9 +43,13 @@ function get_input() {
         var is_parseable = JSON.parse(in_lineString)
         console.log(is_parseable)
 
-        // check_json_input(is_parseable)    
+        var new_route = check_json_input(is_parseable)
+
+        var new_table_values = calculations(new_route)
+        
+        new_table_values
 
     } catch (error) {
-        window.alert("Please insert GeoJSON object")
+        window.alert("Please insert only GeoJSON object")
     }
 }
