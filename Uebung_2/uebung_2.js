@@ -262,37 +262,57 @@ function bubble_sort(in_jsonArray) {
 
 
 /**
- * 
- * @param {JSON-Obj} result 
- */
-function update_table(result) {
-    var table = document.getElementById("table1")
-
-    //generate table  
-    for (var i= 0; i<result.length;i++){
-        var row = table.insertRow()
-        
-        row.insertCell().innerHTML=result[i].distance
-        row.insertCell().innerHTML=result[i].startPoint
-        row.insertCell().innerHTML=result[i].endPoint
-        row.insertCell().innerHTML=result[i].is_in_polygone
-    }   
-}
-
-
-/**
  * returns the total length of given route
  * @param {} in_section_array 
  * @returns sum
  */
- function summation(in_section_array) {
+ function summation(in_distances_in_sorted_json) {
     // sum is for saveing the sum of all elements in the in_section_array 
     var sum = 0 
     // itterate through in_section_array  and add every entry to sum
-    for(let j = 0; j<in_section_array.length-1; j++){ 
-           sum += in_section_array[j]
+    for(let j = 0; j<in_distances_in_sorted_json.length-1; j++){ 
+           sum += in_distances_in_sorted_json[j].distance
     }
     return sum
+}
+
+
+/**
+ * 
+ * @param {JSON-Obj} in_result
+ * @param {Number} in_sum 
+ */
+function update_tables(in_result, in_sum) {
+    var table_1 = document.getElementById("table_1")
+    // cleare first befor filling
+    // otherwise the table could get endless log
+    table_1.innerHTML = ""
+
+    //generate table_1
+    // fill table column header
+    var row = table_1.insertRow()
+    row.insertCell().innerHTML = '<strong>' + "length of distances" + '<br />' + "in Meters" + '</strong>'
+    row.insertCell().innerHTML = '<strong>' + "startcoordinate" + '<br />' + "in M(lon/lat)" + '</strong>'
+    row.insertCell().innerHTML = '<strong>' + "endcoordinate" + '<br />' + "(lon/lat)" + '</strong>'
+    row.insertCell().innerHTML = '<strong>' + "inside" + '<br />' + "polygone" + '</strong>'
+
+    for (var i= 0; i<in_result.length;i++){
+        var row = table_1.insertRow()        
+        row.insertCell().innerHTML = in_result[i].distance
+        row.insertCell().innerHTML = in_result[i].startPoint
+        row.insertCell().innerHTML = in_result[i].endPoint
+        row.insertCell().innerHTML = in_result[i].is_in_polygone
+    }
+
+    // get id and fill table_2
+     var table_2 = document.getElementById("table_2")
+    // cleare first befor filling
+    // otherwise the table could get endless log
+    table_2.innerHTML = ""
+    var single_row_1 = table_2.insertRow()
+    single_row_1.insertCell().innerHTML = '<strong>' + "total length" + '<br />' + "in Meters" + '</strong>'
+    var single_row_2 = table_2.insertRow()
+    single_row_2.insertCell().innerHTML = in_sum
 }
 
 
