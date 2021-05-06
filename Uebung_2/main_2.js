@@ -31,7 +31,9 @@ function calculations(in_route) {
      // console.log("sortedArray")
      // console.log(sorted_array)
 
-     var temp = update_table(sorted_array)
+     var total_sum = summation(sorted_array)
+
+     var temp = update_tables(sorted_array, total_sum)
 }
 
 
