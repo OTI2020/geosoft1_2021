@@ -330,18 +330,6 @@ function check_json_input(in_geojson) {
         input_route = in_geojson.features[0].geometry.coordinates
         console.log("check_json_input result: true")
         return input_route
-
-        /*
-        // perhaps there are several Featurs in the input featureCollection
-        for (let i=0; i<in_geojson.features.length-1; i++) {
-            if (in_geojson.features[i].geometry.type == "LineString") {
-                input_route = in_geojson.features[i].geometry.coordinates
-                console.log("check_json_input result: true")
-                return input_route
-            }
-        }
-        */
-
     } else {
         // if single LineSting is given
         if (in_geojson.type == "LineString") {
@@ -355,4 +343,30 @@ function check_json_input(in_geojson) {
             return false
         } 
     }
+}
+
+/**
+* @function 
+* @param {Array} default_array - the input needs to be an array which represents a line or an polygon
+* @return {} - returns the input array as a GeoJson
+*/
+function array_to_geojson(default_array) {
+    var geojson
+    // in case of polygone the first and the last coordinate are identical
+    if(default_array[0][0] == default_array[default_array.length-1][0] && default_array[0][1] == default_array[default_array.length-1][1]) {
+        // create an String formatted as an GeoJson polygon by concatenation
+        var default_polygon = '{' + '"type": "Polygon",' + '"coordinates": [[' + default_array + ']]}'
+        // parsing the String
+        geojson = JSON.parse(default_polygon)
+        console.log(geojson)
+    }
+    // other inpits are interpreted as lines
+    else {
+        // create an String formatted as an GeoJson polygon by concatenation
+        var default_route = '{' + '"type": "LineString",' + '"coordinates": [' + default_array + ']}'
+        // this is parsing the String, so we can handle it as a real geojson
+        geojson = JSON.parse(default_route)
+        console.log(geojson)
+    }
+    return geojson;
 }
