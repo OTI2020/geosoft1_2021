@@ -45,6 +45,7 @@ function get_input() {
         var is_parseable = JSON.parse(in_lineString)
         console.log(is_parseable)
 
+        // this I could put in beginning of calculations()
         var new_route = check_json_input(is_parseable)
 
         var new_table_values = calculations(new_route)
