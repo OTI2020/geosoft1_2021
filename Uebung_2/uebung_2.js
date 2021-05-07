@@ -284,6 +284,7 @@ function bubble_sort(in_jsonArray) {
  */
 function update_tables(in_result, in_sum) {
     var table_1 = document.getElementById("table_1")
+
     // cleare first befor filling
     // otherwise the table could get endless log
     table_1.innerHTML = ""
@@ -324,22 +325,22 @@ function update_tables(in_result, in_sum) {
  * @return array
  */
 var input_route
-function check_json_input(in_geojson) {
-    console.log("check_json_input START")
+function check_json_input_and_select_array(in_geojson) {
+    console.log("check_json_input_and_select_array START")
     if (in_geojson.type == "FeatureCollection") {
         input_route = in_geojson.features[0].geometry.coordinates
-        console.log("check_json_input result: true")
+        console.log("check_json_input_and_select_array result: true")
         return input_route
     } else {
-        // if single LineSting is given
-        if (in_geojson.type == "LineString") {
+        // if single LineSting or Polygon is given
+        if (in_geojson.type == "LineString" || in_geojson.type == "Polygon") {
             // console.log(in_geojson.type)
-            console.log("check_json_input result: true")
+            console.log("check_json_input_and_select_array result: true")
             input_route = in_geojson.coordinates
             // console.log(input_route)
             return input_route
         } else {
-            console.log("check_json_input result: false")
+            console.log("check_json_input_and_select_array result: false")
             return false
         } 
     }
@@ -355,18 +356,31 @@ function array_to_geojson(default_array) {
     // in case of polygone the first and the last coordinate are identical
     if(default_array[0][0] == default_array[default_array.length-1][0] && default_array[0][1] == default_array[default_array.length-1][1]) {
         // create an String formatted as an GeoJson polygon by concatenation
-        var default_polygon = '{' + '"type": "Polygon",' + '"coordinates": [[' + default_array + ']]}'
+        var default_polygon = '{' + '"type": "Polygon",' + '"coordinates": [[' + array_to_string(default_array) + ']]}'
         // parsing the String
         geojson = JSON.parse(default_polygon)
-        console.log(geojson)
     }
     // other inpits are interpreted as lines
     else {
         // create an String formatted as an GeoJson polygon by concatenation
-        var default_route = '{' + '"type": "LineString",' + '"coordinates": [' + default_array + ']}'
+        var default_route = '{' + '"type": "LineString",' + '"coordinates": [' + array_to_string(default_array) + ']}'
         // this is parsing the String, so we can handle it as a real geojson
         geojson = JSON.parse(default_route)
-        console.log(geojson)
     }
     return geojson;
+}
+
+
+/**
+* @function 
+* @param {Array} array - is a route or a polygon
+* @return {String} - correctly formatted String
+*/
+function array_to_string(array) {
+    var string = '[' + array[0] + '],';
+    for (var i = 1; i < array.length-1; i++) {
+        string = string + '[' + array[i] + '],'
+    }
+    string = string + '[' + array[array.length-1] + ']'
+    return string;
 }
