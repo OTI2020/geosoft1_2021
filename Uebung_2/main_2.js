@@ -8,10 +8,14 @@
  * default route
  */
 function main() {
+    var def_route = array_to_geojson(route)
+    
     calculations(route)
 }
 
-function calculations(in_route) {  
+function calculations(in_route) {
+    var def_polygon = array_to_geojson(polygon)
+
      var separation_array = make_separation_array(in_route, polygon)
      // console.log(separation_array)
      
