@@ -327,6 +327,12 @@ var input_route
 function check_json_input(in_geojson) {
     console.log("check_json_input START")
     if (in_geojson.type == "FeatureCollection") {
+        input_route = in_geojson.features[0].geometry.coordinates
+        console.log("check_json_input result: true")
+        return input_route
+
+        /*
+        // perhaps there are several Featurs in the input featureCollection
         for (let i=0; i<in_geojson.features.length-1; i++) {
             if (in_geojson.features[i].geometry.type == "LineString") {
                 input_route = in_geojson.features[i].geometry.coordinates
@@ -334,6 +340,8 @@ function check_json_input(in_geojson) {
                 return input_route
             }
         }
+        */
+
     } else {
         // if single LineSting is given
         if (in_geojson.type == "LineString") {
