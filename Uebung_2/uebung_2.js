@@ -356,9 +356,10 @@ function array_to_geojson(default_array) {
     // in case of polygone the first and the last coordinate are identical
     if(default_array[0][0] == default_array[default_array.length-1][0] && default_array[0][1] == default_array[default_array.length-1][1]) {
         // create an String formatted as an GeoJson polygon by concatenation
-        var default_polygon = '{' + '"type": "Polygon",' + '"coordinates": [[' + array_to_string(default_array) + ']]}'
+        var default_polygon = '{' + '"type": "Polygon",' + '"coordinates": [' + array_to_string(default_array) + ']}'
         // parsing the String
         geojson = JSON.parse(default_polygon)
+        console.log("if abfrage");
     }
     // other inpits are interpreted as lines
     else {
@@ -366,6 +367,7 @@ function array_to_geojson(default_array) {
         var default_route = '{' + '"type": "LineString",' + '"coordinates": [' + array_to_string(default_array) + ']}'
         // this is parsing the String, so we can handle it as a real geojson
         geojson = JSON.parse(default_route)
+        console.log("else Teil");
     }
     return geojson;
 }
