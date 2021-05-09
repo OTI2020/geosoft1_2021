@@ -9,6 +9,7 @@
  */
 function main() {
     var def_geojson_route = array_to_geojson(route)
+    console.log(def_geojson_route)
 
     var new_route = check_json_input_and_select_array(def_geojson_route)
 
@@ -17,17 +18,13 @@ function main() {
 
 function calculations(in_route) {
     var def_geojson_polygon = array_to_geojson(polygon)
-    // console.log(def_geojson_polygon)
+    console.log(def_geojson_polygon)
 
     var new_polygon = check_json_input_and_select_array(def_geojson_polygon)
     // console.log(new_polygon)
     // console.log(polygon)
 
-    // here I have an unfixed mistake:
-    // actually the second parameter should be >>new_polygon<< and not >>polygon<<
-    // but it does not work then anymore. Only by using polygon as nested arrays it works.
-    // but new_polygon seems to be a moredimensional array -> mistake
-    var separation_array = make_separation_array(in_route, polygon)
+    var separation_array = make_separation_array(in_route, new_polygon)
     // console.log(separation_array)
      
     var section_array = section_count(separation_array)
