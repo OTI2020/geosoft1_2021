@@ -2,7 +2,7 @@
     <html>
         <head>
             <meta charset="UTF-8">
-            <title> Your Wether </title>
+            <title> Your Wether 🌦	🌧	🌨	🌩 </title>
             <h3> geosoftware practice 3 </h3>
             <h2> 🌤 Welcome to Your Weather  🌥	</h2>
             <!-- 🖐 Hello tutor 🖐 -->
@@ -13,18 +13,19 @@
             
             <p>click this nice button to determine your location </p>
             <button type="button" onclick="get_geolocation()"> find my location 🌍 </button>
-            <p> This text field is for insetring your own API-key 🔐 </p>
-            <textarea id="input_field_api_key" rows="1" cols="25"></textarea>
-            <button type="button" onclick="get_input()">Submit 🌦	🌧	🌨	🌩	🌪 </button>
+            <p id="here_I_am"></p>
+
+            <p> This text field is for inserting your own API-key 🔐 </p>
+            <textarea id="input_field_api_key" rows="1" cols="35"></textarea>
+            <button type="button" onclick="get_input()" placeholder="Enter Your key">Submit 🌪 </button>
             
             <!--Output of the weather data-->
             <div>
-                <p id="timezone"></p>
+                <p id="date"></p>
                 <p id="temp"></p>
                 <p id="felt_temp"></p>
                 <p id="humidity"></p>
-                <p id="pressure"></p>
-                <p id="wind"></p>
+                <p id="speed"></p>
             </div>
 
             <!-- getting stressed-->
