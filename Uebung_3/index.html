@@ -3,6 +3,11 @@
         <head>
             <meta charset="UTF-8">
             <title> Your Wether 🌦	🌧	🌨	🌩 </title>
+            <style>
+                table, th, td {
+                  border: 1px solid rgb(153, 81, 201)
+                }
+            </style>
             <h3> geosoftware practice 3 </h3>
             <h2> 🌤 Welcome to Your Weather  🌥	</h2>
             <!-- 🖐 Hello tutor 🖐 -->
@@ -20,13 +25,14 @@
             <button type="button" onclick="get_input()" placeholder="Enter Your key">Submit 🌪 </button>
             
             <!--Output of the weather data-->
-            <div>
-                <p id="date"></p>
-                <p id="temp"></p>
-                <p id="felt_temp"></p>
-                <p id="humidity"></p>
-                <p id="speed"></p>
-            </div>
+            <table id="table_1">
+                <tr>
+                    <th id="temp">temp</th>
+                    <th id="felt_temp">felt_temp</th>
+                    <th id="humidity">humidity</th>
+                    <th id="pressure">pressure</th>
+                </tr>
+            </table>                
 
             <!-- getting stressed-->
             <script defer type="text/javascript" src="main_3.js"></script>
