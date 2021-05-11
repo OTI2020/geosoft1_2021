@@ -4,10 +4,10 @@ This is our solution of task 3!
 🌤🌤🌤🌤
 ## Technologie
 * openWeatherAPI:   https://openweathermap.org/api/one-call-api  
-* * You are pleased to insert your own api-key before running the programm
+    * You are pleased to insert your own api-key before running the programm
 
 * Geolocation:      https://developer.mozilla.org/en-US/docs/Web/API/Geolocation_API
-* * pleace agree that the browser get your geolocation
+    * pleace agree that the browser get your geolocation
 
 ### Instructions for embedding the key
 On this HTML page you can determine the wheather in your location.
@@ -17,7 +17,8 @@ Please note, that you insert your right API-Key, otherwise the code cannot run p
 Käse :)
 
 ## contributors
-@Oti2020
-@Username3076
+@Oti2020 Gustav 
+
+@Username3076 Luca
 
 🌤🌤🌤🌤
