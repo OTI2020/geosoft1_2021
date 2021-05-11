@@ -1,7 +1,7 @@
 
 function get_xhr_object(in_lat, in_long) {
 
-    var in_API_key = get_input()
+    var in_API_key = document.getElementById("input_field_api_key").value
     var resource = "https://api.openweathermap.org/data/2.5/weather?lat="+in_lat+"&lon="+in_long+"&appid="+in_API_key
 
     var x = new XMLHttpRequest();
@@ -34,20 +34,6 @@ function get_xhr_object(in_lat, in_long) {
         console.log(x.status);
     }    
 }
-
-
-/*
-function get_input() {
-    try {
-        var API_key = document.getElementById("input_field_api_key").value
-        console.log(API_key)
-        return API_key
-
-    } catch (error) {
-        window.alert(error + " Please insert your correct API-key")
-    }
-}
-*/
 
 
 function get_geolocation() {
