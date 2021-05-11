@@ -16,21 +16,25 @@
         </head>
         <body style="background-color: rgb(169, 219, 252);">
             
-            <p>click this nice button to determine your location </p>
-            <button type="button" onclick="get_geolocation()"> find my location 🌍 </button>
-
             <p> This text field is for inserting your own API-key 🔐 </p>
             <textarea id="input_field_api_key" rows="1" cols="35"></textarea>
             
+            <p>click this nice button to determine your location </p>
+            <button type="button" onclick="get_geolocation()"> Run 🌍 </button>
+
+            <hr>
             <!--Output of the weather data-->
             <table id="table_1">
                 <tr>
-                    <th id="temp">temp</th>
-                    <th id="felt_temp">felt_temp</th>
-                    <th id="humidity">humidity</th>
-                    <th id="pressure">pressure</th>
+                    <th > next location </th>
+                    <th >temparature <br /> in Fahrenheit</th>
+                    <th >felt temparature  <br /> in Fahrenheit </th>
+                    <th >humidity  <br /> in % </th>
+                    <th >pressure  <br /> in Pa </th>
+                    <th>description</th>
                 </tr>
             </table>                
+            <hr>
 
             <!-- getting stressed-->
             <script defer type="text/javascript" src="main_3.js"></script>
