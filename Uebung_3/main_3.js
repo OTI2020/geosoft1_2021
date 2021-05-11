@@ -36,7 +36,7 @@ function get_xhr_object(in_lat, in_long) {
 }
 
 
-
+/*
 function get_input() {
     try {
         var API_key = document.getElementById("input_field_api_key").value
@@ -44,30 +44,30 @@ function get_input() {
         return API_key
 
     } catch (error) {
-        window.alert("Please insert your correct API-key")
+        window.alert(error + " Please insert your correct API-key")
     }
 }
+*/
 
 
 function get_geolocation() {
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(showPosition, showError);
       } else {
-        // document.getElementById("location_div").innerHTML = "Geolocation N/A...";
+          window.alert("Please insert your correct API-key")
       }
     
     function showPosition(position) {
-        console.log("test showPosition");
-        console.dir(position)
-        console.log(position.coords.latitude)
-
+        // console.log("test showPosition()");
+        // console.dir(position)
+        
         get_xhr_object(position.coords.latitude, position.coords.longitude)
-      // document.getElementById("location_div").innerHTML = position.coords.latitude + ", " + position.coords.longitude;
     }
     
     function showError(error) {
-      console.dir(error);
-      // document.getElementById("location_div").innerHTML = error.message;
+        console.dir(error);
+        window.alert(error + " Please insert your correct API-key")
+      
     }
 }
 
