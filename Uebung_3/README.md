@@ -17,7 +17,8 @@ Please note, that you insert your right API-Key, otherwise the code cannot run p
 Käse :)
 
 ## contributors
-@Oti2020
-@Username3076
+@Oti2020 Gustav 
+
+@Username3076 Luca
 
 🌤🌤🌤🌤
