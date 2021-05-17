@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+    <html>
+        <head>
+            <meta charset="UTF-8">
+            <title> Your Wether 🌦	🌧	🌨	🌩 </title>
+            <style>
+                table, th, td {
+                  border: 1px solid rgb(153, 81, 201)
+                }
+            </style>
+            <h3> geosoftware practice 3 </h3>
+            <h2> 🌤 Welcome to Your Weather  🌥	</h2>
+            <!-- 🖐 Hello tutor 🖐 -->
+            <!-- one of us has a medical operation on the 11th of May 2021-->
+            <!-- We hope that it is okay, we are not coding to the same extent -->
+        </head>
+        <body style="background-color: rgb(169, 219, 252);">
+            
+            <p> This text field is for inserting your own API-key 🔐 </p>
+            <textarea id="input_field_api_key" rows="1" cols="35"></textarea>
+            
+            <p>click this nice button to determine your location </p>
+            <button type="button" onclick="get_geolocation()"> Run 🌍 </button>
+
+            <hr>
+            <!--Output of the weather data-->
+            <table id="table_1">
+                <tr>
+                    <th > next location </th>
+                    <th >temparature <br /> in Fahrenheit</th>
+                    <th >felt temparature  <br /> in Fahrenheit </th>
+                    <th >humidity  <br /> in % </th>
+                    <th >pressure  <br /> in Pa </th>
+                    <th>description</th>
+                </tr>
+            </table>                
+            <hr>
+
+            <!-- getting stressed-->
+            <script defer type="text/javascript" src="main_3.js"></script>
+            <a href="https://github.com/OTI2020/geosoft1_2021" target="_blank"> Visit Our GitHub Repository </a>
+        </body>
+    </html>
