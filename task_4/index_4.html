@@ -4,20 +4,25 @@
             <title> Your Wether 🌦	🌧	🌨	🌩 </title>
             <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
             <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+            <script src="route_4.geojson"></script>
             <style>
-                #map {position: absolute; top: 2; bottom: 2; left: 2; right: 2;}
+                
+                #map {position: absolute; top: 0; bottom: 0; left: 0; right: 0;}
+                
             </style>
         </head>
         <body>
             <div id="map"></div>
             <script>
-                console.log("test_1");
                 var map=L.map('map').setView([0, 0], 1)
-                console.log(map);
                 L.tileLayer('https://api.maptiler.com/maps/streets/{z}/{x}/{y}.png?key=JetIUYq8eZdZDelkpBpy', {
                     attribution: '<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>'
                 }).addTo(map)
-                console.log(map);
+                var markerGEO1 = L.marker([51.969, 7.596]).addTo(map)
+                
+                console.log(route_4);
+                // var myLayer = L.geoJSON().addTo(map)
+                // myLayer.addData(route_4)
             </script>
             <!-- 
                 <a href="https://github.com/OTI2020/geosoft1_2021" target="_blank"> Visit Our GitHub Repository </a> 
