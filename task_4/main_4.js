@@ -14,8 +14,6 @@ function main(){
     var myRoute = L.geoJSON(routeVar).addTo(map)
     console.log("myRoute")
     console.log(myRoute)
-
-    // myLayer.addData(route_4)
 }
 
 
