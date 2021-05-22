@@ -3,18 +3,56 @@
 main()
 function main(){
     var map=L.map('map').setView([51, 9], 5)
-    L.tileLayer('https://api.maptiler.com/maps/streets/{z}/{x}/{y}.png?key=JetIUYq8eZdZDelkpBpy', {
-        attribution: '<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>'
-    }).addTo(map)
+
+    
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        maxZoom: 18,
+        attribution: "Map data &copy; <a href=\"https://www.openstreetmap.org/\">OpenStreetMap</a> contributors",
+        id: "osm"
+    }).addTo(map);
 
     var markerGEO1 = L.marker([51.969, 7.596])
     markerGEO1.addTo(map)
+    markerGEO1.bindPopup("<b> Hello Tutor! <br /> GEO1 is near").openPopup()
     // console.log("markerGEO1")
     // console.log(markerGEO1)
 
-    var myRoute = L.geoJSON(routeVar).addTo(map)
+    var myRoute = L.geoJSON(routeVar)
+    myRoute.addTo(map)
     // console.log("myRoute")
     // console.log(myRoute)
+
+
+    ////////////////////////////
+    // here draw plugin beginns
+    ////////////////////////////
+
+    
+    var drawnItems = L.featureGroup().addTo(map)
+    console.log(drawnItems);
+    console.log(L.Control.Draw);
+
+
+    map.addControl(new L.Control.Draw( {
+        edit: {
+            featureGroup: drawnItems,
+            poly: {
+                allowIntersection: false
+            }
+        },
+        draw: {
+            polygon: {
+                allowIntersection: false,
+                showArea: true
+            }
+            // marker: false
+        }
+    }))
+
+map.on(L.Draw.Event.CREATED, function (event) {
+    var layer = event.layer;
+    drawnItems.addLayer(layer);
+})
 }
 
 
