@@ -41,11 +41,11 @@ function main(){
             }
         },
         draw: {
-            polygon: {
-                allowIntersection: false,
-                showArea: true
-            }
-            // marker: false
+            polyline: false,
+            polygon: false,
+            marker: false,
+            circle:false,
+            rectangle: true
         }
     }))
 
@@ -54,5 +54,4 @@ map.on(L.Draw.Event.CREATED, function (event) {
     drawnItems.addLayer(layer);
 })
 }
-
 
