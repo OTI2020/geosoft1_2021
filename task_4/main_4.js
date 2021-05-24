@@ -26,7 +26,7 @@ function main(){
     ////////////////////////////
     // here draw plugin beginns
     ////////////////////////////
-
+    
     
     var drawnItems = L.featureGroup().addTo(map)
     console.log(drawnItems);
