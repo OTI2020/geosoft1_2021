@@ -2,10 +2,6 @@
 
 main()
 function main() {
-    /*
-    var weather_test = get_weather_data(51, 9)
-    console.log(weather_test);
-*/
     var start_map = create_map_with_route_and_marker()
     get_toolbar_functionality(start_map)
 }
@@ -111,41 +107,46 @@ function create_weather_popups(in_map, in_points) {
         
         // marker name
         var m_name = 'marker_' + (i+1)
+        console.log(m_name);
 
         // get data of current weather
-        var weather_data = "Wetter ist Toll :}" // get_weather_data(in_points.features[i].geometry.coordinates[1], in_points.features[i].geometry.coordinates[0])
-
-        // fill popup with information
-        weather_marker.bindPopup("<b> This is " + m_name + "<br /> coordinates: (" + x_coor + ", " + y_coor + ") <br /> " + weather_data).openPopup()
+        get_weather_data(in_points.features[i].geometry.coordinates[1], in_points.features[i].geometry.coordinates[0], weather_marker, m_name)
 
     }
     
 }
 
-/*
-function get_weather_data(in_lat, in_long) {
-    const in_API_key = 'ded0c00bef63a9916734210973755e9a'
-    var url = "https://api.openweathermap.org/data/2.5/weather?lat="+in_lat+"&lon="+in_long+"&appid="+in_API_key
-    console.log("resource url");
-    console.log(url);
 
-    
-    var weather = "<b>current Weather:</b><br>" + coord.weather[0].description + "<br>" + coord.main.temp + "F";
-    console.log(weather);
+
+
+// https://stackoverflow.com/questions/49662431/display-openweathermap-api-data-on-website-using-ajax
+
+function get_weather_data(in_lat, in_long, in_weather_marker, in_m_name) {
+    const in_API_key = '18b0849dbd5bea37f47a2a6c96946580'
+    var resourse_url = "https://api.openweathermap.org/data/2.5/weather?lat="+in_lat+"&lon="+in_long+"&appid="+in_API_key
 
     $.ajax({
-        url: url,
-        contentType: "application/x-www-form-urlencoded; charset=UTF-8",
-        success: function(result){
-            console.log(result.current.main.temp);
-            var weather = "<b>current Weather:</b><br>" + result.current.weather[0].description + "<br>" + result.current.main.temp + "F";
-            console.log(weather);
-        }
-    }).done(function() {
-        $( this ).addClass( "done" );
-      });
+        url: resourse_url,
+        type: "GET",
+        dataType: "jsonp",
+        success: function(data){
+            /*
+            console.log(data)
+            console.log(data.weather[0].main)
+            console.log(data.main)
+            console.log(data.main.temp)
+            */
 
-    return weather
+            // rounded (2 decimal places) coordinates for the popup
+            var x_coor = Math.round(data.coord.lon*100)/100
+            var y_coor = Math.round(data.coord.lat*100)/100
+        
+            var weather_data = '<b> This is ' + in_m_name + '</b> <br /> coordinates(lon,lat): (' + x_coor + ','+ y_coor + ') <br /> sea level: ' + data.main.sea_level + '<br /> current Weather: ' + data.weather[0].description + '<br /> temperature: ' + data.main.temp + ' F'
+            
+            // fill popup with information
+            in_weather_marker.bindPopup(weather_data).openPopup()
+        }
+    })
 }
-*/
+
 
