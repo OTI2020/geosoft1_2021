@@ -1,12 +1,13 @@
 
 
-
 main()
 function main() {
+    /*
+    var weather_test = get_weather_data(51, 9)
+    console.log(weather_test);
+*/
     var start_map = create_map_with_route_and_marker()
-    // var insec_points = 
     get_toolbar_functionality(start_map)
-    // insec_points
 }
 
 
@@ -44,11 +45,7 @@ function create_map_with_route_and_marker() {
  */
 function get_toolbar_functionality(in_map) {
     var drawnItems = L.featureGroup().addTo(in_map)
-    console.log("drawnItems")
-    console.log(drawnItems)
-    // console.log(L.Control.Draw)
-
-
+    
     in_map.addControl(new L.Control.Draw( {
         edit: {
             featureGroup: drawnItems,
@@ -71,8 +68,6 @@ function get_toolbar_functionality(in_map) {
         var layer = e.layer
         // add this layer to drawnItems
         drawnItems.addLayer(layer)
-        console.log("drawnItems.toGeoJSON()")
-        console.log(drawnItems.toGeoJSON())
         
         // to prevent that more than one polygone gets created
         // this toolbar functionality gets hidden
@@ -80,8 +75,6 @@ function get_toolbar_functionality(in_map) {
 
         var polygon_for_intersection = drawnItems.toGeoJSON()
         var out_points = get_intersection_points(routeVar, polygon_for_intersection)
-        console.log("out_points")
-        console.log(out_points)
 
         create_weather_popups(in_map, out_points)
     })
@@ -98,8 +91,7 @@ function get_toolbar_functionality(in_map) {
 // called by get_toolbar_functionality in case of an drawn.event
 function get_intersection_points(in_line_1, in_line_2) {
     var intersects = turf.lineIntersect(in_line_1, in_line_2)
-    console.log("intersects");
-    console.log(intersects)
+
     return intersects
 }
 
@@ -107,7 +99,6 @@ function get_intersection_points(in_line_1, in_line_2) {
 // called by get_toolbar_functionality in case of an drawn.event
 function create_weather_popups(in_map, in_points) {
     var number_of_insections = in_points.features.length
-    console.log(number_of_insections + "number_of_insections");
     
     for (let i=0; i<number_of_insections; i++) {
         
@@ -118,30 +109,43 @@ function create_weather_popups(in_map, in_points) {
         var x_coor = Math.round(in_points.features[i].geometry.coordinates[1]*100)/100
         var y_coor = Math.round(in_points.features[i].geometry.coordinates[0]*100)/100
         
-        // marker names
+        // marker name
         var m_name = 'marker_' + (i+1)
-        weather_marker.bindPopup("<b> This is " + m_name + "<br /> coordinates: (" + x_coor + ", " + y_coor + ") <br />").openPopup()
+
+        // get data of current weather
+        var weather_data = "Wetter ist Toll :}" // get_weather_data(in_points.features[i].geometry.coordinates[1], in_points.features[i].geometry.coordinates[0])
+
+        // fill popup with information
+        weather_marker.bindPopup("<b> This is " + m_name + "<br /> coordinates: (" + x_coor + ", " + y_coor + ") <br /> " + weather_data).openPopup()
 
     }
     
 }
 
-
-
-
 /*
-let url = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lng + "&exclude=minutely,hourly,daily&appid=" + weatherApi+"&units=metric"
+function get_weather_data(in_lat, in_long) {
+    const in_API_key = 'ded0c00bef63a9916734210973755e9a'
+    var url = "https://api.openweathermap.org/data/2.5/weather?lat="+in_lat+"&lon="+in_long+"&appid="+in_API_key
+    console.log("resource url");
+    console.log(url);
+
+    
+    var weather = "<b>current Weather:</b><br>" + coord.weather[0].description + "<br>" + coord.main.temp + "F";
+    console.log(weather);
+
     $.ajax({
         url: url,
         contentType: "application/x-www-form-urlencoded; charset=UTF-8",
         success: function(result){
-            console.log(result.current.temp);
-            let weather = "<b>current Weather:</b><br>" +result.current.weather[0].description + "<br>" + result.current.temp + "°C";
+            console.log(result.current.main.temp);
+            var weather = "<b>current Weather:</b><br>" + result.current.weather[0].description + "<br>" + result.current.main.temp + "F";
             console.log(weather);
-            marker.bindPopup(weather).openPopup();
         }
     }).done(function() {
         $( this ).addClass( "done" );
       });
+
+    return weather
+}
 */
 
