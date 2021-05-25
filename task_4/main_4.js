@@ -122,7 +122,7 @@ function create_weather_popups(in_map, in_points) {
 // https://stackoverflow.com/questions/49662431/display-openweathermap-api-data-on-website-using-ajax
 
 function get_weather_data(in_lat, in_long, in_weather_marker, in_m_name) {
-    const in_API_key = '18b0849dbd5bea37f47a2a6c96946580'
+    const in_API_key = '***********************'
     var resourse_url = "https://api.openweathermap.org/data/2.5/weather?lat="+in_lat+"&lon="+in_long+"&appid="+in_API_key
 
     $.ajax({
