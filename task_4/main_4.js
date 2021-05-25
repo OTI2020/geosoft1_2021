@@ -11,6 +11,8 @@ function main() {
 }
 
 
+
+
 /**
  * @returns map - leaflat amp, that contains tilelayer, markerGEO1 and 
  * given geoJSON route from the learnweb
@@ -37,6 +39,7 @@ function create_map_with_route_and_marker() {
 
     return map
 }
+
 
 
 
@@ -99,6 +102,7 @@ function get_toolbar_functionality(in_map) {
 
 
 
+
 /**
  * called by get_toolbar_functionality in case of an drawn.event
  * @param {PolyString/Polygon} in_line_1 
@@ -111,6 +115,7 @@ function get_intersection_points(in_line_1, in_line_2) {
     var intersects = turf.lineIntersect(in_line_1, in_line_2)
     return intersects
 }
+
 
 
 
