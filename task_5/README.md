@@ -33,7 +33,6 @@ This is my solution of task 5!
 
 ## contributors
 @OTI2020        Gustav
-@Username3076   Luca
 
 
 🌤🌤🌤🌤
