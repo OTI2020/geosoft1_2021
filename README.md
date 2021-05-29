@@ -22,5 +22,5 @@ Practice for the Geosoftware course at the Institute for Geoinformatics at the U
 
 
 ## contributors
-@OTI2020        Gustav
-@Username3076   Luca
+> @OTI2020        Gustav
+> @Username3076   Luca
