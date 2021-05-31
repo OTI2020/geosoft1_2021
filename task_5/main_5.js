@@ -1,4 +1,3 @@
-console.log("testing hiding: " + openWeatherAPI);
 
 main()
 /**
@@ -158,8 +157,10 @@ function create_weather_popups(in_map, in_points) {
  * ajax syntax from: https://stackoverflow.com/questions/49662431/display-openweathermap-api-data-on-website-using-ajax
  */
 function get_weather_data(in_lat, in_long, in_weather_marker, in_m_name) {
-    // pleace past Your API key here:
-    const in_API_key = '***************************'
+    // openWeatherAPI is a variable from a hidden js-file:
+    // it contains only: 
+    // const openWeatherAPI = '***************************'
+    const in_API_key = openWeatherAPI
     var resourse_url = "https://api.openweathermap.org/data/2.5/weather?lat="+in_lat+"&lon="+in_long+"&appid="+in_API_key
 
     $.ajax({
