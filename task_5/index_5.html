@@ -3,8 +3,12 @@
         <head>
             <title> Your Weather 🌦	🌧	🌨	🌩 </title>
             <meta charset="utf-8">
-            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
 
+            <!-- this needs to be loaded befor sll the other stylesheets -->
+            <!-- Bootstrap CSS 
+            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+-->
+            <!-- leaflet css and js -->
             <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
             <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
 
@@ -22,25 +26,36 @@
 
             <!-- load given route as geojson-file -->
             <script src="route_4.geojson"></script>
-
-            <h1> Welcome to that wonderful html-page</h1>
         </head>
         <body>
+            <div class="intro">
+                <h1> Welcome to that wonderful html-page</h1>
+                <h2> do not forget the API token :) </h2>
+            </div>
             <div id="mapID"></div>
             
             <link rel="stylesheet" href="style_5.css"/>
             <script src="main_5.js"></script>
 
+            <!-- Optional JavaScript -->
+            <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+            <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+            <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
             <hr>
-            References:
-            <ul>
-                <li><a href="https://github.com/OTI2020/geosoft1_2021" target="_blank"> Visit My GitHub Repository </a></li>
-                <li><a href="http://turfjs.org/docs/#lineIntersect" target="_blank">http://turfjs.org/docs/#lineIntersect</a></li>
-                <li><a href="https://leafletjs.com/examples.html" target="blank">https://leafletjs.com/examples.html</a></li>
-                <li><a href="https://github.com/streuselcake/jslab" target="_blank">https://github.com/streuselcake/jslab</a></li>
-                <li><a href="https://leafletjs.com/reference-1.6.0.html" target="blank">https://leafletjs.com/reference-1.6.0.html</a></li>
-                <li><a href="https://leaflet.github.io/Leaflet.draw/docs/leaflet-draw-latest.html" target="blank">https://leaflet.github.io/Leaflet.draw/docs/leaflet-draw-latest.html</a></li>
-            </ul>
+            <div class="list_of_references">
+                References:
+                <ul>
+                    <li><a href="https://github.com/OTI2020/geosoft1_2021" target="_blank"> Visit My GitHub Repository </a></li>
+                    <li><a href="http://turfjs.org/docs/#lineIntersect" target="_blank">http://turfjs.org/docs/#lineIntersect</a></li>
+                    <li><a href="https://leafletjs.com/examples.html" target="blank">https://leafletjs.com/examples.html</a></li>
+                    <li><a href="https://github.com/streuselcake/jslab" target="_blank">https://github.com/streuselcake/jslab</a></li>
+                    <li><a href="https://leafletjs.com/reference-1.6.0.html" target="blank">https://leafletjs.com/reference-1.6.0.html</a></li>
+                    <li><a href="https://leaflet.github.io/Leaflet.draw/docs/leaflet-draw-latest.html" target="blank">https://leaflet.github.io/Leaflet.draw/docs/leaflet-draw-latest.html</a></li>
+                </ul>
+            </div>
+            
         </body>
     </html>
 
