@@ -16,6 +16,15 @@ h2 {
 }
 
 
+.img-fluid {
+  height: 300px;
+  width: 100% !important;
+  object-fit: cover;
+  object-position: top center;
+}
+
+
+
 /* 
 Up to here - style differences 
 becouse of responsive designe
