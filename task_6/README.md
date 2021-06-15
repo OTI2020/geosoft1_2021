@@ -1,23 +1,22 @@
-This is my solution of task 5!
-## Task
-* Styling
-    * through Bootstrap or similar.
-    * Responsive layout
-        * Hamburger menu
-        * Dynamic element size
+This is my solution of task 6!
 
-> Translated with www.DeepL.com/Translator (free version)
+My partners and I did not manage the task, but, with `node test` you can have a look at the bit I have done.
+![image](https://user-images.githubusercontent.com/61976211/122122144-b2e27300-ce2c-11eb-938f-d11a1063520f.png)
+with `node start` you get the fpllowing:
+![image](https://user-images.githubusercontent.com/61976211/122122273-e58c6b80-ce2c-11eb-9ead-be1e9ff3e747.png)
+
+## Task
 
 =======
 🌤🌤🌤🌤
 ## Technologie
 * openWeatherAPI:   https://openweathermap.org/api/one-call-api  
-    * You are pleased to insert your own api-key at the beginning of the @function get_weather_data() You find it in the main.js
+    * You are pleased to insert your own api-key in a token.js
 * Leaflet
 * turf
 * jquery
 * ajax
-* Bootstrap
+* (Bootstrap)
 
 ### References
 * http://turfjs.org/docs/#lineIntersect
