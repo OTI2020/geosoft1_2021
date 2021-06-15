@@ -8,7 +8,7 @@ const server = http.createServer(function (req, res)
 {
 
      // return a file as a response
-     fs.readFile('./storage.html', function(err, data) 
+     fs.readFile('./index.html', function(err, data) 
      {
  
          if (err) 
