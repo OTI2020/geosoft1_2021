@@ -1,13 +1,17 @@
 
 // basic version
+const { response } = require('express')
 let http = require('http') // use an existing module from node
+ let fs = require("fs") 
 let host = "localhost" // 127.0.0.1
-let port = 1234
+let port = 2000
 
 
 let server = http.createServer(handleRequest) // create a server
 
 server.listen(port, host) // say where the server should listen
+
+
 
 // say what the server should do, when it gets an incoming request
 function handleRequest (request, res)
@@ -17,7 +21,9 @@ function handleRequest (request, res)
     if(request.url === "/")
     {
         res.writeHead(200, {'Content-Type': 'text/html'})
-        res.write ("We are on the main page")
+        var index = fs.readFile('../index.html')
+        console.log(index);
+        res.write(index)
         res.end()
 
     } else if (request.url === "/index.html")
