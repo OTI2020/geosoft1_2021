@@ -1,4 +1,4 @@
-
+console.log("main is running")
 main()
 /**
  * main function is needed befor interacting of users could be possible
