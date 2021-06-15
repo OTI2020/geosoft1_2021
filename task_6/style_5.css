@@ -1,0 +1,68 @@
+
+
+/*This is for the heading of the html-page*/
+h1 {
+  color: green;
+}
+h2 {
+  color: rgb(99, 30, 9);
+  font-style:italic;
+}
+
+/* <div> with References */
+.list_of_references {
+  border: 3px solid #73AD21;
+  background-color: rgba(95, 95, 89, 0.541);
+}
+
+
+.img-fluid {
+  height: 300px;
+  width: 100% !important;
+  object-fit: cover;
+  object-position: top center;
+}
+
+
+
+/* 
+Up to here - style differences 
+becouse of responsive designe
+*/
+@media only screen and (min-width: 992px) {
+  .intro{
+    margin: auto;
+    width: 60%;
+    padding: 10px;  
+  }
+  #mapID {
+    margin: auto;
+    width: 60%;
+    height: 400px;
+    overflow: hidden;
+  }
+  .list_of_references {
+    margin: auto;
+    width: 60%;
+    padding: 10px;
+  }
+}
+
+@media only screen and (max-width: 991px) {
+  .intro{
+    margin: auto;
+    width: 100%;
+    padding: 10px;  
+  }
+  #mapID {
+    margin: auto;
+    width: 100%;
+    height: 400px;
+    overflow: hidden;
+  }
+  .list_of_references {
+    margin: auto;
+    width: 100%;
+    padding: 10px;
+  }
+}
