@@ -1,1 +1,28 @@
-<html></html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue.js test page</title>
+
+    <!-- development version, includes helpful console warnings -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+</head>
+<body>
+    <!-- everything in this div is controled by the vue instance-->
+    <div id="app">
+        <h1> {{person.name}} </h1>
+        <h2>{{ credo(person.follows) }}</h2>
+        <!--vue-directive 'v-bind:'' oder kurz ':' -->
+        <h1><a v-bind:href="website"> gehe zu google</a></h1>
+        <h1><a :href="website"> gehe zu google</a></h1>
+
+        
+        <p v-html="atag"></p>
+         
+        <input type="text" :value="person.name">
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
