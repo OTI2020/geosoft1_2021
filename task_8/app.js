@@ -1,7 +1,6 @@
 // we save dynamic data and can manupulate it later
-console.log(this.atag);
-new Vue({
-    el: '#app',
+let vOne = new Vue({
+    el: '#vue-one-app', // like an id
     data: {
         firstname: '',
         lastname: '',
@@ -14,8 +13,29 @@ new Vue({
     computed: {
         fullname() {
             return `${this.firstname} ${this.lastname}`;
+        },
+        print() {
+            return this.names[0];
         }
-    },
+    }
 });
 
+
+// an other instance
+let vTwo = new Vue({
+    el: '#vue-two-app',
+    data: {
+        helloStr: 'hello world - trust Jesus',
+    },
+    computed: {
+        print() {
+            return this.helloStr;
+        }
+    },
+    methods: {
+        changeData() {
+            vOne.firstname = 'Archibaldino';
+        }
+    }
+});
 
