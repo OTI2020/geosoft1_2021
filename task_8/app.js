@@ -3,16 +3,13 @@ console.log(this.atag);
 new Vue({
     el: '#app',
     data: {
-        myValue: 42,
+        names: ['Florian', 'Gustav', 'Peter'],
+        persons: [
+            {name: 'Florian', age: 21},
+            {name: 'Gustav', age: 53},
+        ]
     },
-    methods: {
-        subtract: function() {
-            this.myValue--
-        },
-        add: function() {
-            this.myValue++;
-        },
-    },
+    methods: {},
 });
 
 
