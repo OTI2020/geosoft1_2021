@@ -3,17 +3,14 @@ console.log(this.atag);
 new Vue({
     el: '#app',
     data: {
-        person: {
-            name: 'Gustav',
-            height: 181,
-            follows: 'Jesus Christ'
-        },
-        website: 'http://google.com/',
-        atag: '<a href="http://google.com/"> testing the google </a>'
+        myValue: 42,
     },
     methods: {
-        credo: function(who) {
-            return 'I, ' + this.person.name + ', belive in ' + who +'!';
+        subtract: function() {
+            this.myValue--
+        },
+        add: function() {
+            this.myValue++;
         },
     },
 });
