@@ -1,25 +1,44 @@
 // we save dynamic data and can manupulate it later
 let vOne = new Vue({
-    el: '#vue-one-app', // like an id
+    el: '#app', // like an id
     data: {
-        firstname: '',
-        lastname: '',
-        names: ['Florian', 'Gustav', 'Peter'],
-        persons: [
-            {name: 'Florian', age: 21},
-            {name: 'Gustav', age: 53},
+        username: '',
+        password: '',
+        currentUser: 'Florian',
+        feedback: '',
+        users: [
+            {name:'Florian', password:'1234'},
+            {name:'Gustav', password:'gut'},
+            {name:'gfreiher', password:'sehrgut'},
+            {name:'halloTuer', password:'qwert'},
         ]
     },
-    computed: {
-        fullname() {
-            return `${this.firstname} ${this.lastname}`;
+    methods: {
+        checkPassword(){
+            console.log("halloTimo");
+            console.log(this.users.filter(user => password === user.password));
+            return this.users.filter(user => password === user.password)
         },
-        print() {
-            return this.names[0];
+        checkCredentials(event){
+            event.preventDefault()
+            if (
+                this.username === this.currentUser &&
+                this.checkPassword(this.password).length !== 0
+            ){
+                this.feedback = 'correct credentials'
+            } else {
+                this.feedback = 'wrong credentials'
+            }
+        },
+        changeUser(name){
+            this.currentUser = name
         }
     }
 });
 
+
+
+/*
 
 // an other instance
 let vTwo = new Vue({
@@ -39,3 +58,4 @@ let vTwo = new Vue({
     }
 });
 
+*/
