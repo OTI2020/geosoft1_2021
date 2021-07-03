@@ -10,17 +10,12 @@
 </head>
 <body>
     <!-- everything in this div is controled by the vue instance-->
-    <div id="app">
-        <h1> {{person.name}} </h1>
-        <h2>{{ credo(person.follows) }}</h2>
-        <!--vue-directive 'v-bind:'' oder kurz ':' -->
-        <h1><a v-bind:href="website"> gehe zu google</a></h1>
-        <h1><a :href="website"> gehe zu google</a></h1>
-
-        
-        <p v-html="atag"></p>
-         
-        <input type="text" :value="person.name">
+    <div id="app"> 
+        <h3> {{ myValue }} </h3>
+        <button v-on:click="myValue--" v-on:mouseover="add">-</button>
+        <button v-on:click="myValue++" v-on:mouseover="subtract">+</button>
+        <!-- modificate events-->
+        <button v-on:click.once="add">1 mal +</button>
     </div>
 
     <script src="app.js"></script>
