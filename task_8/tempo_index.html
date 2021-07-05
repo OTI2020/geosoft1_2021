@@ -1,0 +1,53 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue.js test page</title>
+
+    <!-- development version, includes helpful console warnings -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+
+    <!-- mini css -->
+    <link rel="stylesheet" href="https://cdn.rawgit.com/Chalarangelo/mini.css/v3.0.1/dist/mini-default.min.css">
+</head>
+<body>
+    <!-- everything in this div is controled by the vue instance-->
+    <div id="app">
+        <div class="container">
+            <form>
+                <fieldset>
+                    <legend>Login</legend>
+                    <label for="username">Username</label>
+                    <input 
+                        type="text"
+                        id="username"
+                        placeholder="Username"
+                        v-model="username"
+                    ><br/>
+                    <label for="password">Password</label>
+                    <input
+                        type="text"
+                        id="password"
+                        placeholder="Password"
+                        v-model="password"
+                    ><br/>
+                    <!-- event as parameter, to prevent the page from beeing reloaded -->
+                    <button class="primary" @click="checkCredentials($event)"> Primary</button>
+                </fieldset>
+            </form>
+            <p>{{feedback}}</p>
+            <p>Feedback...</p>
+            <ul>
+                <li v-for="user in users" :key="user.name">
+                    <a
+                        @click="changeUser(user.name)"
+                    >{{user.name}}</a>
+                </li>
+            </ul>
+        </div>        
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

@@ -1,53 +1,57 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>vue.js test page</title>
+    <title>Task 2 with vue.js</title>
 
-    <!-- development version, includes helpful console warnings -->
+    <!-- vue.js development version, includes helpful console warnings -->
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
 
     <!-- mini css -->
     <link rel="stylesheet" href="https://cdn.rawgit.com/Chalarangelo/mini.css/v3.0.1/dist/mini-default.min.css">
+
 </head>
 <body>
-    <!-- everything in this div is controled by the vue instance-->
-    <div id="app">
-        <div class="container">
-            <form>
-                <fieldset>
-                    <legend>Login</legend>
-                    <label for="username">Username</label>
-                    <input 
-                        type="text"
-                        id="username"
-                        placeholder="Username"
-                        v-model="username"
-                    ><br/>
-                    <label for="password">Password</label>
-                    <input
-                        type="text"
-                        id="password"
-                        placeholder="Password"
-                        v-model="password"
-                    ><br/>
-                    <!-- event as parameter, to prevent the page from beeing reloaded -->
-                    <button class="primary" @click="checkCredentials($event)"> Primary</button>
-                </fieldset>
-            </form>
-            <p>{{feedback}}</p>
-            <p>Feedback...</p>
-            <ul>
-                <li v-for="user in users" :key="user.name">
-                    <a
-                        @click="changeUser(user.name)"
-                    >{{user.name}}</a>
-                </li>
-            </ul>
-        </div>        
-    </div>
+    <h2> Geosoftware I - last practice</h2>
+    <hr>
+    <div>
+        <p> Create your own route in a GeoJSON-format. <p>
+        <a href="https://geojson.io/" target="_blank"> Create your own lineString </a>
+        
+        <p> This text field is for insetring your own route. <br /> (only single LineString or FeatureCollection with LineString as first Feature) </p>
+        <textarea id="textField" rows="6" cols="40"></textarea>
+        
+        <p> Are you sure? </p>
+        <p> Let the programm run with your input! </p> 
+        <button type="button" onclick="get_input()">Submit</button>
 
-    <script src="app.js"></script>
+        <p> Let the programm run with the default route </p> 
+        <button type="button" onclick="main()">Run Default </button>
+    </div> 
+       
+    <table id="table_1">
+        <tr>
+            <th>length of distances<br /> in Meters</th>
+            <th>startcoordinate <br /> (lon/lat)</th>
+            <th>endcoordinate <br /> (lon/lat)</th>
+            <th width="80">inside polygone</th>
+        </tr>
+    </table>
+    <p> Derived total legth of choosen route:</p>
+    <table id="table_2">
+        <tr>
+            <th> total length <br /> in Meters</th>
+        </tr>
+    </table>
+    <script defer type="text/javascript" src="datastore_2/polygon.js"></script> 
+    <script defer type="text/javascript" src="datastore_2/route.js"></script> 
+    <script defer type="text/javascript" src="uebung_2.js"></script> 
+    <script defer type="text/javascript" src="main.js"></script>
+
+    <hr>
+    <a href="https://github.com/OTI2020/geosoft1_2021" target="_blank"> Visit My GitHub Repository </a>
+
 </body>
 </html>

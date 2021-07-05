@@ -35,27 +35,3 @@ let vOne = new Vue({
         }
     }
 });
-
-
-
-/*
-
-// an other instance
-let vTwo = new Vue({
-    el: '#vue-two-app',
-    data: {
-        helloStr: 'hello world - trust Jesus',
-    },
-    computed: {
-        print() {
-            return this.helloStr;
-        }
-    },
-    methods: {
-        changeData() {
-            vOne.firstname = 'Archibaldino';
-        }
-    }
-});
-
-*/
