@@ -1,18 +1,12 @@
-var title = new Vue({
+var vue_headings = new Vue({
     el: '#headings',
     data: {
-        message: 'Geosoftware 1, 2021 - Task 8'
+        title: 'Geosoftware 1, 2021 - Task 8',
+        subtitle: 'Tobias B., Dominik Z. und Gustav v.A.',
     }
 })
 
-//Subtitle vue
-var subtitle = new Vue({
-    el: '#subtitle',
-    data: {
-        message: 'Tobias B., Dominik Z. und Gustav v.A.'
-    }
-})
-
+/*
 //Table vue
 var table = new Vue({
     el:'#table',
@@ -20,3 +14,4 @@ var table = new Vue({
         distances: distances
     },
 })
+*/
