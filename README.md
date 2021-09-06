@@ -8,6 +8,9 @@ Practice for the Geosoftware course at the Institute for Geoinformatics at the U
 * jquery
 * ajax
 * Bootstrap
+* node.js
+* docker
+* vue.js
 
 ### References
 * http://turfjs.org/docs/#lineIntersect
@@ -24,3 +27,5 @@ Practice for the Geosoftware course at the Institute for Geoinformatics at the U
 ## contributors
 * @OTI2020        Gustav
 * @Username3076   Luca
+* Tobias
+* Dominik
